@@ -4,7 +4,7 @@ dotenv.config();
 
 function parseCorsOrigins(): string[] {
   const raw = process.env.CORS_ORIGIN;
-  if (!raw) return ["http://localhost:3000"];
+  if (!raw) return ["http://localhost:3000", "https://ozonevets.vercel.app", "https://theozonevets.com"];
   return raw.split(",").map((s) => s.trim()).filter(Boolean);
 }
 

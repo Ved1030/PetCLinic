@@ -111,12 +111,7 @@ export const submitContact = async (formData: ContactFormData) => {
 
 // Newsletter
 export const subscribeNewsletter = async (formData: NewsletterFormData) => {
-  const { data } = await apiClient.post("/contact", {
-    ...formData,
-    name: "Newsletter Subscriber",
-    subject: "Newsletter Subscription",
-    message: `Newsletter subscription request from: ${formData.email}`,
-  });
+  const { data } = await apiClient.post("/newsletter", formData);
   return data;
 };
 

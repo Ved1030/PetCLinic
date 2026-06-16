@@ -17,7 +17,9 @@ import { fadeInUp } from "@/lib/animations";
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
   email: z.string().email("Invalid email address"),
-  subject: z.string().min(1, "Subject is required").max(200),
+  phone: z.string().min(10, "Phone must be at least 10 digits"),
+  petName: z.string().min(1, "Pet name is required").max(100),
+  petType: z.string().min(1, "Pet type is required").max(50),
   message: z.string().min(1, "Message is required").max(2000),
 });
 
@@ -62,7 +64,7 @@ export default function ContactForm() {
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <Label htmlFor="name" className="text-[#4A3A2A] font-medium">Name</Label>
+          <Label htmlFor="name" className="text-[#4A3A2A] font-medium">Your Name *</Label>
           <Input
             id="name"
             placeholder="Your name"
@@ -73,7 +75,7 @@ export default function ContactForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-[#4A3A2A] font-medium">Email</Label>
+          <Label htmlFor="email" className="text-[#4A3A2A] font-medium">Email *</Label>
           <Input
             id="email"
             type="email"
@@ -85,15 +87,46 @@ export default function ContactForm() {
         </div>
       </div>
 
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <Label htmlFor="phone" className="text-[#4A3A2A] font-medium">Phone *</Label>
+          <Input
+            id="phone"
+            type="tel"
+            placeholder="+91 98204 45010"
+            {...register("phone")}
+            className={`border-[#EFE7DD] focus:border-[#B98B5D] focus:ring-[#B98B5D]/20 rounded-xl ${errors.phone ? "border-red-500" : ""}`}
+          />
+          {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="petType" className="text-[#4A3A2A] font-medium">Pet Type *</Label>
+          <select
+            id="petType"
+            {...register("petType")}
+            className={`flex h-10 w-full rounded-xl border border-[#EFE7DD] bg-white px-3 py-2 text-sm focus:border-[#B98B5D] focus:ring-[#B98B5D]/20 focus-visible:outline-none focus-visible:ring-2 transition-all ${errors.petType ? "border-red-500" : ""}`}
+          >
+            <option value="">Select pet type</option>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Bird">Bird</option>
+            <option value="Rabbit">Rabbit</option>
+            <option value="Other">Other</option>
+          </select>
+          {errors.petType && <p className="text-sm text-red-500">{errors.petType.message}</p>}
+        </div>
+      </div>
+
       <div className="space-y-2">
-        <Label htmlFor="subject" className="text-[#4A3A2A] font-medium">Subject</Label>
+        <Label htmlFor="petName" className="text-[#4A3A2A] font-medium">Pet Name *</Label>
         <Input
-          id="subject"
-          placeholder="What's this about?"
-          {...register("subject")}
-          className={`border-[#EFE7DD] focus:border-[#B98B5D] focus:ring-[#B98B5D]/20 rounded-xl ${errors.subject ? "border-red-500" : ""}`}
+          id="petName"
+          placeholder="e.g., Max"
+          {...register("petName")}
+          className={`border-[#EFE7DD] focus:border-[#B98B5D] focus:ring-[#B98B5D]/20 rounded-xl ${errors.petName ? "border-red-500" : ""}`}
         />
-        {errors.subject && <p className="text-sm text-red-500">{errors.subject.message}</p>}
+        {errors.petName && <p className="text-sm text-red-500">{errors.petName.message}</p>}
       </div>
 
       <div className="space-y-2">

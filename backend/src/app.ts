@@ -9,6 +9,7 @@ import contactRoutes from "./routes/contactRoutes";
 import staticDataRoutes from "./routes/staticDataRoutes";
 import chatRoutes from "./routes/chatRoutes";
 import testEmailRoutes from "./routes/testEmailRoutes";
+import newsletterRoutes from "./routes/newsletterRoutes";
 import { errorHandler } from "./middlewares/errorHandler";
 import { logger } from "./utils/logger";
 
@@ -74,6 +75,7 @@ app.use(`${config.apiPrefix}/appointments`, appointmentRoutes);
 app.use(`${config.apiPrefix}/contact`, contactRoutes);
 app.use(`${config.apiPrefix}/data`, staticDataRoutes);
 app.use(`${config.apiPrefix}/chat`, chatRoutes);
+app.use(`${config.apiPrefix}/newsletter`, newsletterRoutes);
 
 if (config.isDev) {
   app.use(`${config.apiPrefix}/test-email`, testEmailRoutes);
