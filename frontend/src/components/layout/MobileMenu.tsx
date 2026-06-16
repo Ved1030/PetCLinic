@@ -73,7 +73,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 {allLinks.map((link) => {
                   const isActive = isActiveLink(pathname, hash, link.href);
                   return (
-                    <motion.div key={link.href} variants={itemVariants}>
+                    <motion.div key={link.label} variants={itemVariants}>
                       <Link
                         href={link.href}
                         onClick={onClose}

@@ -43,8 +43,8 @@ export const SOCIAL_LINKS = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/#home" },
+  { label: "Home", href: "/#home" },
+  { label: "About", href: "/#about" },
   { label: "Services", href: "/#services" },
   { label: "Reviews", href: "/#reviews" },
   { label: "Contact", href: "/#contact" },

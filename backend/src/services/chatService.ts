@@ -173,77 +173,77 @@ export const chatService = {
     }
 
     if (msg.includes("hello") || msg.includes("hi ") || msg.includes("hey") || msg.includes("good morning") || msg.includes("good evening")) {
-      return "Hello! Welcome to THE OZONE VETS. I'm your veterinary care assistant. How can I help you and your pet today? You can ask me about our services, pet health concerns, or book an appointment with Dr. Komal.";
+      return "\uD83D\uDC4B Welcome to THE OZONE VETS!\n\nI'm your veterinary care assistant. I can help you with:\n\u2022 Pet health concerns\n\u2022 Clinic information\n\u2022 Booking appointments with Dr. Komal\n\nHow can I help you and your pet today?";
     }
 
     if (msg.includes("appointment") || msg.includes("book") || msg.includes("schedule")) {
       if (lastPetContext) {
-        return `I'd be happy to help schedule an appointment for your ${lastPetContext}. Please visit our appointment page to select a convenient date and time.\n\n[Book Appointment]`;
+        return `I'd be happy to help schedule an appointment for your ${lastPetContext}.\n\nPlease visit our appointment page to select a convenient date and time.\n\n[Book Appointment]`;
       }
-      return "You can book an appointment online through our website's appointment page, or call us at +91 98204 45010. Would you like to schedule a consultation with Dr. Komal?\n\n[Book Appointment]";
+      return "You can book an appointment online through our website's appointment page, or call us at +91 98204 45010.\n\nWould you like to schedule a consultation with Dr. Komal?\n\n[Book Appointment]";
     }
 
     if (msg.includes("hour") || msg.includes("open") || msg.includes("timing") || msg.includes("time")) {
-      return "We are open Monday to Saturday from 10:00 AM to 8:00 PM. We are closed on Sundays. For emergencies, please call us immediately at +91 98204 45010.";
+      return "\uD83D\uDD52 Our Clinic Timings\n\nTHE OZONE VETS\nMonday \u2013 Saturday\n10:00 AM \u2013 8:00 PM\n\n\u274C Sunday: Closed\n\n\uD83D\uDCDE For emergencies, please call us immediately at +91 98204 45010.";
     }
 
     if (msg.includes("address") || msg.includes("location") || msg.includes("where") || msg.includes("find")) {
-      return "We are located at C3 SARANGA, Lokhandwala Complex Market, Bungalow, 3rd Cross Road, Opp. Cliff Tower, Andheri West, Mumbai 400053. You can call us at +91 98204 45010 for directions.";
+      return "\uD83D\uDCCD Our Location\n\nTHE OZONE VETS\nC3 SARANGA,\nLokhandwala Complex Market,\nBungalow, 3rd Cross Road,\nOpp. Cliff Tower, Andheri West,\nMumbai 400053\n\n\uD83D\uDCDE Phone: +91 98204 45010\n\uD83D\uDCE7 Email: hello@theozonevets.com";
     }
 
     if (msg.includes("dr. komal") || msg.includes("doctor") || msg.includes("vet")) {
-      return "Dr. Komal is our lead veterinarian at THE OZONE VETS, providing advanced veterinary care with compassion. Dr. Komal specializes in ozone therapy, acupuncture, and holistic pet care. Would you like to book a consultation?\n\n[Book Appointment]";
+      return "\uD83D\uDC69\u200D\u2695\uFE0F Meet Dr. Komal\n\nDr. Komal is our lead veterinarian at THE OZONE VETS, providing advanced veterinary care with compassion and expertise.\n\nSpecializations include:\n\u2022 Ozone Therapy\n\u2022 Acupuncture\n\u2022 Holistic Pet Care\n\nWould you like to book a consultation?\n\n[Book Appointment]";
     }
 
     if (msg.includes("service") || msg.includes("treatment") || msg.includes("offer")) {
-      return "We offer a wide range of services including: Veterinary Consultation, Vaccination, Pet Grooming, Blood Testing, Digital X-Rays, Ozone Therapy, Acupuncture, Pet Boarding, and Emergency Consultation. Would you like more details on any specific service?";
+      return "\uD83C\uDFE5 Our Services\n\nWe offer a wide range of veterinary services:\n\n\u2022 Veterinary Consultation\n\u2022 Vaccination\n\u2022 Pet Grooming\n\u2022 Blood Testing\n\u2022 Digital X-Rays\n\u2022 Ozone Therapy\n\u2022 Acupuncture\n\u2022 Pet Boarding\n\u2022 Emergency Consultation\n\nWould you like more details on any specific service?";
     }
 
     if (msg.includes("groom") || msg.includes("bath") || msg.includes("nail")) {
-      return "Our pet grooming service includes professional bathing, brushing, nail trimming, ear cleaning, and breed-specific styling. Prices vary based on pet size and coat condition. Call +91 98204 45010 for a quote or book an appointment!\n\n[Book Appointment]";
+      return "\u2702\uFE0F Pet Grooming Services\n\nOur grooming package includes:\n\u2022 Professional bathing & brushing\n\u2022 Nail trimming\n\u2022 Ear cleaning\n\u2022 Breed-specific styling\n\nPrices vary based on pet size and coat condition.\n\nCall +91 98204 45010 for a quote or book an appointment!\n\n[Book Appointment]";
     }
 
     if (msg.includes("board") || msg.includes("daycare") || msg.includes("stay")) {
-      return "Yes, we offer pet boarding services! Our facility is safe, clean, and comfortable. Your pet will receive proper care, feeding, and attention. Contact us at +91 98204 45010 for availability and pricing.";
+      return "\uD83C\uDFE5 Pet Boarding\n\nYes, we offer pet boarding services! Our facility is:\n\u2022 Safe and clean\n\u2022 Comfortable environment\n\u2022 Proper care, feeding, and attention\n\nContact us at +91 98204 45010 for availability and pricing.";
     }
 
     if (msg.includes("ozone") || msg.includes("ozone therapy")) {
-      return "Ozone therapy is one of our specialized treatments! It uses medical-grade ozone to improve oxygen utilization, boost the immune system, and treat various conditions. Dr. Komal has extensive experience in ozone therapy. Call +91 98204 45010 to learn more.";
+      return "\uD83C\uDFE5 Ozone Therapy\n\nOzone therapy is one of our specialized treatments! It uses medical-grade ozone to:\n\u2022 Improve oxygen utilization\n\u2022 Boost the immune system\n\u2022 Treat various conditions\n\nDr. Komal has extensive experience in ozone therapy. Call +91 98204 45010 to learn more.";
     }
 
     if (msg.includes("acupuncture") || msg.includes("acupunct")) {
-      return "Yes, we offer veterinary acupuncture! This traditional Chinese medicine technique can help with pain management, arthritis, neurological conditions, and overall wellness. Dr. Komal is trained in veterinary acupuncture.";
+      return "\uD83D\uDC89 Veterinary Acupuncture\n\nYes, we offer veterinary acupuncture! This traditional Chinese medicine technique can help with:\n\u2022 Pain management\n\u2022 Arthritis\n\u2022 Neurological conditions\n\u2022 Overall wellness\n\nDr. Komal is trained in veterinary acupuncture.";
     }
 
     if (msg.includes("price") || msg.includes("cost") || msg.includes("fee") || msg.includes("charge") || msg.includes("rate")) {
-      return "For detailed pricing information, I recommend calling us at +91 98204 45010. Prices vary depending on the service, pet size, and specific treatment required. We'd be happy to provide a quote!";
+      return "\uD83D\uDCB0 Pricing\n\nFor detailed pricing information, I recommend calling us at +91 98204 45010. Prices vary depending on the service, pet size, and specific treatment required. We'd be happy to provide a personalized quote!";
     }
 
     if (msg.includes("emergency") || msg.includes("urgent")) {
-      return "If you have a pet emergency, please call us immediately at +91 98204 45010. For life-threatening emergencies, please visit the nearest emergency veterinary hospital. Do not wait if your pet is in distress.";
+      return "\uD83D\uDE91 Emergency Pet Care\n\nIf you have a pet emergency, please call us immediately at +91 98204 45010.\n\nFor life-threatening emergencies, please visit the nearest emergency veterinary hospital. Do not wait if your pet is in distress.";
     }
 
     if (msg.includes("vaccin") || msg.includes("shot") || msg.includes("rabies") || msg.includes("vaccination")) {
-      return "We offer comprehensive vaccination services for dogs and cats including core vaccines and optional vaccines. Dr. Komal will recommend the best vaccination schedule based on your pet's age, lifestyle, and health status. Call +91 98204 45010 for more details or book an appointment.\n\n[Book Appointment]";
+      return "\uD83D\uDC89 Vaccination Services\n\nWe offer comprehensive vaccination services for dogs and cats including:\n\u2022 Core vaccines (rabies, distemper, parvovirus, etc.)\n\u2022 Optional vaccines based on lifestyle\n\nDr. Komal will recommend the best vaccination schedule based on your pet's age, lifestyle, and health status.\n\nCall +91 98204 45010 for more details or book an appointment.\n\n[Book Appointment]";
     }
 
     if (msg.includes("blood") || msg.includes("test") || msg.includes("lab")) {
-      return "We offer comprehensive blood testing services including complete blood counts, biochemistry panels, organ function tests, and more. Results are typically available quickly for prompt diagnosis.";
+      return "\uD83D\uDC89 Blood Testing\n\nWe offer comprehensive blood testing services:\n\u2022 Complete blood counts\n\u2022 Biochemistry panels\n\u2022 Organ function tests\n\u2022 And more\n\nResults are typically available quickly for prompt diagnosis.";
     }
 
     if (msg.includes("x-ray") || msg.includes("xray") || msg.includes("radiograph") || msg.includes("imaging")) {
-      return "We have digital X-ray facilities for advanced diagnostic imaging. Digital X-rays provide quick, high-quality images with minimal radiation exposure for your pet.";
+      return "\uD83D\uDCD1 Digital X-Ray\n\nWe have digital X-ray facilities for advanced diagnostic imaging. Digital X-rays provide quick, high-quality images with minimal radiation exposure for your pet.";
     }
 
     if (msg.includes("cat") || msg.includes("dog") || msg.includes("puppy") || msg.includes("kitten") || msg.includes("pet")) {
-      return "We treat both dogs and cats at THE OZONE VETS. Dr. Komal provides compassionate care for all pets. Do you have a specific concern about your pet? I'd be happy to help.";
+      return "\uD83D\uDC3E Compassionate Care for All Pets\n\nWe treat both dogs and cats at THE OZONE VETS. Dr. Komal provides compassionate, expert care for all pets.\n\nDo you have a specific concern about your pet? I'd be happy to help.";
     }
 
     if (msg.includes("thank")) {
-      return "You're welcome! If you have any more questions, feel free to ask. We're here to help you and your pet. Wishing your pet good health!";
+      return "You're welcome! \uD83D\uDE0A\n\nIf you have any more questions, feel free to ask. We're always here to help you and your pet.\n\nWishing your pet good health and happiness! \uD83D\uDC3E\u2764\uFE0F";
     }
 
-    return "Thank you for reaching out to THE OZONE VETS. I'm your veterinary care assistant, here to help with pet health questions, clinic information, or appointment booking. How can I assist you and your pet today?";
+    return "Thank you for reaching out to THE OZONE VETS! \uD83C\uDFE5\n\nI'm your veterinary care assistant, here to help with:\n\u2022 Pet health questions\n\u2022 Clinic information\n\u2022 Appointment booking\n\nHow can I assist you and your pet today?";
   },
 
   hasHealthConcern(msg: string): boolean {

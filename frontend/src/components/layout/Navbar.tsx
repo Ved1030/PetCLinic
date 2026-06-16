@@ -93,7 +93,7 @@ export default function Navbar() {
                 const isActive = isActiveLink(pathname, hash, link.href);
                 return (
                   <Link
-                    key={link.href}
+                    key={link.label}
                     href={link.href}
                     className="relative text-[15px] font-medium tracking-[-0.01em] transition-all duration-300 py-2 group"
                   >

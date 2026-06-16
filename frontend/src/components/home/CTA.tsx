@@ -12,7 +12,7 @@ export default function CTA() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} id="contact" className="py-20 lg:py-28 bg-white">
+    <section ref={ref} className="py-20 lg:py-28 bg-white">
       <div className="max-width">
         <motion.div
           initial="hidden"

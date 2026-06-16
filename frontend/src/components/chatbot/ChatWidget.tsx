@@ -9,26 +9,64 @@ import type { ChatMessage } from "@/types";
 import { useRouter } from "next/navigation";
 
 const QUICK_ACTIONS = [
-  { label: "Cat Not Eating", message: "My cat is not eating" },
-  { label: "Dog Scratching", message: "My dog is scratching a lot" },
-  { label: "Vaccination", message: "I need vaccination for my pet" },
-  { label: "Book Now", message: "I'd like to book an appointment" },
+  { label: "\uD83D\uDCC5 Book an Appointment", message: "I'd like to book an appointment with Dr. Komal" },
+  { label: "\uD83D\uDD52 Clinic Timings", message: "What are your clinic timings?" },
+  { label: "\uD83D\uDCCD Clinic Location", message: "Where is the clinic located?" },
+  { label: "\uD83D\uDC89 Vaccination Schedule", message: "I need vaccination for my pet" },
+  { label: "\uD83D\uDC36 Puppy Health Check", message: "I need a puppy health checkup" },
+  { label: "\uD83D\uDC31 Cat Health Consultation", message: "I need a cat health consultation" },
+  { label: "\uD83D\uDE91 Emergency Pet Care", message: "I need emergency pet care" },
+  { label: "\u2702\uFE0F Pet Grooming Services", message: "Do you offer pet grooming services?" },
+  { label: "\uD83C\uDFE5 Ozone Therapy Info", message: "Tell me about ozone therapy" },
+  { label: "\uD83D\uDCDE Speak to Our Team", message: "I'd like to speak to someone on the team" },
 ];
 
 const BOOK_MARKER = "[Book Appointment]";
 
-function renderMessageContent(content: string, onBook: () => void) {
+function formatMessageContent(content: string) {
+  const lines = content.split('\n');
+  const elements: any[] = [];
+  let listItems: any[] = [];
+  let flushList = (key: string) => {
+    if (listItems.length > 0) {
+      elements.push(<ul key={key} className="list-disc ml-5 space-y-1 my-1.5 text-[#4A3A2A]">{listItems}</ul>);
+      listItems = [];
+    }
+  };
+
+  lines.forEach((line, i) => {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      flushList(`ul-end-${i}`);
+      return;
+    }
+    if (trimmed.startsWith('\u2022')) {
+      listItems.push(<li key={`li-${i}`}>{trimmed.replace('\u2022', '').trim()}</li>);
+      return;
+    }
+    flushList(`ul-${i}`);
+    elements.push(<span key={`s-${i}`}>{trimmed}</span>);
+    if (i < lines.length - 1) {
+      elements.push(<br key={`br-${i}`} />);
+    }
+  });
+  flushList('ul-final');
+
+  return <>{elements}</>;
+}
+
+function formatBotMessage(content: string, onBook: () => void) {
   if (!content.includes(BOOK_MARKER)) {
-    return <span>{content}</span>;
+    return <div style={{ lineHeight: "1.7" }}>{formatMessageContent(content)}</div>;
   }
 
   const parts = content.split(BOOK_MARKER);
   return (
-    <span>
-      {parts[0]}
+    <div style={{ lineHeight: "1.7" }}>
+      <div>{formatMessageContent(parts[0])}</div>
       <button
         onClick={onBook}
-        className="inline-flex items-center gap-1.5 mt-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
+        className="inline-flex items-center gap-1.5 mt-3 mb-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 shadow-sm"
         style={{
           background: "linear-gradient(135deg, #B98B5D, #A67A4A)",
           color: "white",
@@ -37,8 +75,8 @@ function renderMessageContent(content: string, onBook: () => void) {
         <Calendar className="w-4 h-4" />
         Book Appointment
       </button>
-      {parts[1]}
-    </span>
+      {parts[1] && <div className="mt-1">{formatMessageContent(parts[1])}</div>}
+    </div>
   );
 }
 
@@ -151,7 +189,8 @@ export default function ChatWidget() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 min-h-0 overflow-y-auto px-4 py-4 space-y-3" style={{ scrollbarWidth: "thin", scrollbarColor: "#D8C9B3 transparent", touchAction: "pan-y", overscrollBehavior: "contain" }}>
+            <div className="flex-1 min-h-0 overflow-y-auto px-4 py-5" style={{ scrollbarWidth: "thin", scrollbarColor: "#D8C9B3 transparent", touchAction: "pan-y", overscrollBehavior: "contain" }}>
+              <div className="flex flex-col gap-4">
               {messages.map((msg, i) => (
                 <motion.div
                   key={i}
@@ -161,59 +200,61 @@ export default function ChatWidget() {
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                    className={`${
+                      msg.role === "user" ? "max-w-[80%] sm:max-w-[75%]" : "max-w-[90%] sm:max-w-[85%]"
+                    } px-5 py-4 rounded-2xl text-sm ${
                       msg.role === "user"
                         ? "text-white"
                         : "text-[#4A3A2A]"
                     }`}
                     style={
                       msg.role === "user"
-                        ? { background: "linear-gradient(135deg, #B98B5D, #A67A4A)" }
-                        : { background: "rgba(250, 247, 242, 0.9)", border: "1px solid rgba(239, 231, 221, 0.5)" }
+                        ? { background: "linear-gradient(135deg, #B98B5D, #A67A4A)", lineHeight: "1.6" }
+                        : { background: "rgba(250, 247, 242, 0.95)", border: "1px solid rgba(239, 231, 221, 0.5)", boxShadow: "0 2px 8px rgba(74, 58, 42, 0.06)", lineHeight: "1.7" }
                     }
                   >
                     {msg.role === "assistant"
-                      ? renderMessageContent(msg.content, handleBook)
+                      ? formatBotMessage(msg.content, handleBook)
                       : msg.content}
                   </div>
                 </motion.div>
               ))}
-
-              {isLoading && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex justify-start"
-                >
-                  <div
-                    className="px-4 py-3 rounded-2xl text-sm flex items-center gap-2"
-                    style={{ background: "rgba(250, 247, 242, 0.9)", border: "1px solid rgba(239, 231, 221, 0.5)" }}
+                {isLoading && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex justify-start"
                   >
-                    <span className="flex gap-1">
-                      <span className="w-2 h-2 rounded-full bg-[#B98B5D] animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <span className="w-2 h-2 rounded-full bg-[#B98B5D] animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <span className="w-2 h-2 rounded-full bg-[#B98B5D] animate-bounce" style={{ animationDelay: "300ms" }} />
-                    </span>
-                  </div>
-                </motion.div>
-              )}
-
+                    <div
+                      className="px-5 py-4 rounded-2xl text-sm flex items-center gap-3"
+                      style={{ background: "rgba(250, 247, 242, 0.95)", border: "1px solid rgba(239, 231, 221, 0.5)", boxShadow: "0 2px 8px rgba(74, 58, 42, 0.06)" }}
+                    >
+                      <span className="flex gap-1.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#B98B5D] animate-bounce" style={{ animationDelay: "0ms" }} />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#B98B5D] animate-bounce" style={{ animationDelay: "150ms" }} />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#B98B5D] animate-bounce" style={{ animationDelay: "300ms" }} />
+                      </span>
+                    </div>
+                  </motion.div>
+                )}
               <div ref={messagesEndRef} />
+              </div>
             </div>
 
             {/* Quick Actions */}
             {showQuickActions && messages.length <= 1 && (
-              <div className="px-4 pb-2">
+              <div className="px-4 pb-3">
+                <p className="text-xs font-medium text-[#7B6A58] mb-2.5 px-0.5">Quick help</p>
                 <div className="flex flex-wrap gap-2">
                   {QUICK_ACTIONS.map((action) => (
                     <button
                       key={action.label}
                       onClick={() => handleSend(action.message)}
-                      className="text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 hover:scale-105"
+                      className="text-xs font-medium px-3.5 py-2 rounded-full transition-all duration-200 hover:scale-105 active:scale-95 hover:shadow-md"
                       style={{
-                        background: "rgba(185, 139, 93, 0.1)",
-                        color: "#8A633D",
-                        border: "1px solid rgba(185, 139, 93, 0.2)",
+                        background: "rgba(185, 139, 93, 0.08)",
+                        color: "#6B4F30",
+                        border: "1px solid rgba(185, 139, 93, 0.25)",
                       }}
                     >
                       {action.label}
@@ -277,7 +318,7 @@ export default function ChatWidget() {
         suppressHydrationWarning
         onClick={toggleChat}
         aria-label="Toggle chat"
-        className="fixed bottom-6 right-4 sm:right-6 z-50 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95"
+        className="fixed bottom-[96px] right-4 sm:right-6 z-50 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95"
         style={{
           background: "linear-gradient(135deg, #4A3A2A, #5A4A38)",
           boxShadow: "0 4px 20px rgba(74, 58, 42, 0.3)",

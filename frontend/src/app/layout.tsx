@@ -62,8 +62,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`} style={{ overflowX: "hidden", backgroundColor: "#FAF7F2" }}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`} style={{ overflowX: "hidden", backgroundColor: "#FAF7F2" }} suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning style={{ overflowX: "hidden", backgroundColor: "#FAF7F2" }}>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var a=document.querySelectorAll("[fdprocessedid]");for(var i=0;i<a.length;i++){a[i].removeAttribute("fdprocessedid")}var o=new MutationObserver(function(m){for(var j=0;j<m.length;j++){if(m[j].type==="attributes"&&m[j].attributeName==="fdprocessedid"){m[j].target.removeAttribute("fdprocessedid")}}});o.observe(document.documentElement,{attributes:true,subtree:true,attributeFilter:["fdprocessedid"]})})()` }} />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
