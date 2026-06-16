@@ -233,16 +233,16 @@ html.lenis {
 
 /* Force text gradient to render correctly in dark mode */
 .dark .text-gradient-accent {
-  background-image: linear-gradient(to right, #D8C9B3, #B98B5D, #A67A4A);
+  background-image: linear-gradient(to right, #FFFFFF, #F5EFE5, #D8C9B3);
 }
 
 .dark .text-gradient {
-  background-image: linear-gradient(to right, #D8C9B3, #B98B5D);
+  background-image: linear-gradient(to right, #FFFFFF, #D8C9B3);
 }
 
 /* Hero section dark mode polish */
 .dark section#home .hero-word.text-gradient-accent {
-  background-image: linear-gradient(to right, #D8C9B3, #B98B5D, #A67A4A) !important;
+  background-image: linear-gradient(to right, #FFFFFF, #F5EFE5, #D8C9B3) !important;
 }
 
 
