@@ -64,6 +64,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`} style={{ overflowX: "hidden", backgroundColor: "#FAF7F2" }} suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning style={{ overflowX: "hidden", backgroundColor: "#FAF7F2" }}>
+        <script dangerouslySetInnerHTML={{
+          __html: `try{var m=window.matchMedia("(prefers-color-scheme:dark)");if(m.matches)document.documentElement.classList.add("dark");m.addEventListener("change",function(e){document.documentElement.classList.toggle("dark",e.matches)})}catch(e){}`
+        }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

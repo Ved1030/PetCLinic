@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    color-scheme: light;
     --background: 38 44 96;
     --foreground: 30 28 23;
     --card: 0 0 100;
@@ -27,6 +28,7 @@
   }
 
   .dark {
+    color-scheme: dark;
     --background: 29 30 13;
     --foreground: 38 44 96;
     --card: 30 38 16;
@@ -58,6 +60,7 @@
 
   * {
     border-color: hsl(var(--border));
+    forced-color-adjust: none;
   }
 
   html {
@@ -208,6 +211,38 @@ html.lenis {
 ::selection {
   background-color: rgba(185, 139, 93, 0.3);
   color: #4A3A2A;
+}
+
+.dark ::selection {
+  background-color: rgba(185, 139, 93, 0.4);
+  color: #FAF7F2;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #1A1410;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4A3A2A;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #5A4A38;
+}
+
+/* Force text gradient to render correctly in dark mode */
+.dark .text-gradient-accent {
+  background-image: linear-gradient(to right, #D8C9B3, #B98B5D, #A67A4A);
+}
+
+.dark .text-gradient {
+  background-image: linear-gradient(to right, #D8C9B3, #B98B5D);
+}
+
+/* Hero section dark mode polish */
+.dark section#home .hero-word.text-gradient-accent {
+  background-image: linear-gradient(to right, #D8C9B3, #B98B5D, #A67A4A) !important;
 }
 
 

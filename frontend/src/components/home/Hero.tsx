@@ -90,13 +90,20 @@ export default function Hero() {
   const line1Words = useMemo(() => "Advanced Veterinary Care For Your Beloved Pets".split(" "), []);
 
   return (
-    <section ref={containerRef} id="home" className="relative min-h-screen w-full overflow-hidden bg-[#FAF7F2]">
+    <section ref={containerRef} id="home" className="relative min-h-screen w-full overflow-hidden bg-[#FAF7F2] dark:bg-[#1A1410]">
 
-      {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[#E9DDD0]/40 via-transparent to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#B98B5D]/10 via-transparent to-transparent rounded-full blur-3xl pointer-events-none" />
+      {/* Light mode decorative Elements */}
+      <div className="dark:hidden absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[#E9DDD0]/40 via-transparent to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="dark:hidden absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#B98B5D]/10 via-transparent to-transparent rounded-full blur-3xl pointer-events-none" />
 
-      {/* ═══════════════ IMAGE ═══════════════ */}
+      {/* Dark mode ambient glow */}
+      <div className="hidden dark:block absolute top-[-20%] right-[-10%] w-[700px] h-[700px] bg-gradient-to-bl from-[#B98B5D]/12 via-[#8A633D]/8 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="hidden dark:block absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-[#5A4A38]/20 via-[#3A2A1A]/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+      {/* Dark mode warm bronze radial overlay */}
+      <div className="hidden dark:block absolute inset-0 bg-gradient-to-br from-[#B98B5D]/5 via-[#3A2A1A]/30 to-[#1A1410]/80 pointer-events-none" />
+
+      {/* ═══════════════ DESKTOP IMAGE ═══════════════ */}
       <motion.div
         ref={imageContainerRef}
         style={{ y: imageParallaxY, scale: imageScale }}
@@ -114,22 +121,22 @@ export default function Hero() {
           />
         </div>
         {/* Fade left edge into background */}
-        <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#FAF7F2] via-[#FAF7F2]/60 to-transparent w-[35%]" />
+        <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#FAF7F2] dark:from-[#1A1410] via-[#FAF7F2]/60 dark:via-[#1A1410]/60 to-transparent w-[35%]" />
 
-        {/* Stats Card */}
+        {/* Desktop Stats Card */}
         <motion.div
           ref={statsCardRef}
           className="absolute bottom-8 right-8 z-20 opacity-0 hidden lg:block"
         >
-          <div className="bg-white/90 backdrop-blur-xl border border-[#EFE7DD] rounded-3xl shadow-luxury p-5">
+          <div className="bg-white/90 dark:bg-[#2D2218]/90 backdrop-blur-xl border border-[#EFE7DD] dark:border-[#5A4A38]/40 rounded-3xl shadow-luxury dark:shadow-[0_4px_40px_rgba(0,0,0,0.3)] p-5">
             <div className="grid grid-cols-3 gap-4">
               {STATS.map((stat, index) => (
                 <div key={index} className="stat-item flex flex-col items-center text-center">
                   <div className={`flex items-center justify-center w-10 h-10 rounded-2xl bg-gradient-to-br ${stat.color} mb-2.5 shadow-lg`}>
                     <stat.icon className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-lg font-display font-bold text-[#4A3A2A] leading-none">{stat.value}</span>
-                  <span className="text-[10px] text-[#7B6A58] font-medium mt-1 leading-tight">{stat.label}</span>
+                  <span className="text-lg font-display font-bold text-[#4A3A2A] dark:text-white leading-none">{stat.value}</span>
+                  <span className="text-[10px] text-[#7B6A58] dark:text-[#D8C9B3] font-medium mt-1 leading-tight">{stat.label}</span>
                 </div>
               ))}
             </div>
@@ -138,26 +145,33 @@ export default function Hero() {
       </motion.div>
 
       {/* ═══════════════ CONTENT ═══════════════ */}
-      <div className="relative z-10 w-full min-h-screen flex items-center px-4 sm:px-6 lg:px-16 xl:px-24 pt-28 sm:pt-32 lg:pt-0">
+      <div className="relative z-10 w-full min-h-screen flex items-center px-4 sm:px-6 lg:px-16 xl:px-24 pt-24 sm:pt-28 lg:pt-0 pb-24 lg:pb-0">
         <div className="w-full max-w-[520px] lg:max-w-[560px] xl:max-w-[620px] py-10 sm:py-12 lg:py-0">
 
+          {/* Mobile-only Brand */}
+          <div className="lg:hidden mb-4">
+            <span className="inline-block text-[10px] sm:text-xs font-display font-bold tracking-[0.25em] uppercase text-[#B98B5D] dark:text-[#D8C9B3]">
+              THE OZONE VETS
+            </span>
+          </div>
+
           {/* Heading */}
-          <h1 ref={headingRef} className="text-[clamp(2.6rem,5vw,4.2rem)] font-display font-bold leading-[1.08] tracking-[-0.02em] text-[#4A3A2A] mb-6 sm:mb-8" style={{ perspective: "800px" }}>
+          <h1 ref={headingRef} className="text-[clamp(2.2rem,7.5vw,4.2rem)] lg:text-[clamp(2.6rem,5vw,4.2rem)] font-display font-bold leading-[1.08] tracking-[-0.02em] text-[#4A3A2A] dark:text-white mb-5 sm:mb-8" style={{ perspective: "800px", textShadow: "0 4px 20px rgba(0,0,0,0.25)" }}>
             {line1Words.map((word, i) => (
               <span key={`l1-${i}`} className={`hero-word inline-block mr-[0.3em] ${i === 0 || i === 1 ? "text-gradient-accent" : ""}`}>{word}</span>
             ))}
           </h1>
 
           {/* Subheading */}
-          <p ref={subtitleRef} className="text-[clamp(0.95rem,1.3vw,1.1rem)] text-[#7B6A58] leading-[1.8] max-w-[480px] mb-10 sm:mb-12 opacity-0">
+          <p ref={subtitleRef} className="text-[clamp(0.9rem,1.1vw,1.1rem)] text-[#7B6A58] dark:text-[#E9DDD0] leading-[1.8] max-w-[480px] mb-8 sm:mb-10 lg:mb-12 opacity-0">
             THE OZONE VETS provides advanced diagnostics, consultations, ozone therapy, acupuncture, pet grooming, boarding, and compassionate veterinary care for pets across Mumbai.
           </p>
 
           {/* CTA Buttons */}
-          <div ref={ctaContainerRef} className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4 w-full sm:w-auto">
+          <div ref={ctaContainerRef} className="flex flex-col sm:flex-row items-stretch sm:items-start gap-3 sm:gap-4 w-full sm:w-auto">
             <Link href="/appointment" className="cta-btn w-full sm:w-auto">
               <MagneticButton strength={0.2}>
-                <span className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#B98B5D] via-[#B98B5D] to-[#B98B5D] h-[52px] w-full sm:w-auto min-w-0 sm:min-w-[200px] px-7 text-white font-semibold text-[15px] shadow-[0_8px_30px_rgba(185,139,93,0.3)] hover:shadow-[0_12px_40px_rgba(185,139,93,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center cursor-pointer">
+                <span className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#B98B5D] via-[#A67A4A] to-[#B98B5D] h-14 sm:h-[52px] w-full sm:w-auto min-w-0 sm:min-w-[200px] px-7 text-white font-semibold text-[15px] shadow-[0_8px_30px_rgba(185,139,93,0.3)] dark:shadow-[0_8px_30px_rgba(185,139,93,0.45)] hover:shadow-[0_12px_40px_rgba(185,139,93,0.4)] dark:hover:shadow-[0_12px_40px_rgba(185,139,93,0.55)] transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center cursor-pointer">
                   <span className="relative z-10 flex items-center justify-center gap-2.5">
                     <Calendar className="w-[18px] h-[18px]" />
                     Book Appointment
@@ -169,7 +183,7 @@ export default function Hero() {
 
             <a href={`tel:${CONTACT_INFO.phone}`} className="cta-btn w-full sm:w-auto">
               <MagneticButton strength={0.2}>
-                <span className="group relative overflow-hidden rounded-2xl h-[52px] w-full sm:w-auto min-w-0 sm:min-w-[200px] px-7 text-[#4A3A2A] font-semibold text-[15px] border border-[#EFE7DD] bg-white hover:border-[#B98B5D]/60 hover:shadow-[0_4px_20px_rgba(185,139,93,0.1)] transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center cursor-pointer">
+                <span className="group relative overflow-hidden rounded-2xl h-14 sm:h-[52px] w-full sm:w-auto min-w-0 sm:min-w-[200px] px-7 text-[#4A3A2A] dark:text-white font-semibold text-[15px] border border-[#EFE7DD] dark:border-white/20 bg-white dark:bg-white/10 backdrop-blur-sm hover:border-[#B98B5D]/60 hover:shadow-[0_4px_20px_rgba(185,139,93,0.1)] dark:hover:border-[#B98B5D]/50 dark:hover:bg-white/15 transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center cursor-pointer">
                   <span className="flex items-center justify-center gap-2.5">
                     <Phone className="w-[18px] h-[18px] text-[#B98B5D]" />
                     Call Now
@@ -178,22 +192,36 @@ export default function Hero() {
               </MagneticButton>
             </a>
           </div>
-        </div>
-      </div>
 
-      {/* ═══════════════ MOBILE STATS ═══════════════ */}
-      <div className="lg:hidden relative z-20 w-full px-4 sm:px-6 -mt-12 pb-8">
-        <div className="bg-white/90 backdrop-blur-xl border border-[#EFE7DD] rounded-3xl shadow-luxury p-4">
-          <div className="grid grid-cols-3 gap-3">
-            {STATS.map((stat, index) => (
-              <div key={index} className="stat-item flex flex-col items-center text-center">
-                <div className={`flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-br ${stat.color} mb-1.5 shadow-md`}>
-                  <stat.icon className="w-3.5 h-3.5 text-white" />
-                </div>
-                <span className="text-sm font-display font-bold text-[#4A3A2A] leading-none">{stat.value}</span>
-                <span className="text-[9px] text-[#7B6A58] font-medium mt-0.5 leading-tight">{stat.label}</span>
+          {/* ═══════════════ MOBILE HERO IMAGE + STATS ═══════════════ */}
+          <div className="lg:hidden mt-8 sm:mt-10">
+            {/* Hero Image */}
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] rounded-2xl overflow-hidden border border-[#EFE7DD] dark:border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)] mb-6">
+              <Image
+                src="/images/home-image.png"
+                alt="THE OZONE VETS - Premium luxury veterinary clinic"
+                fill
+                priority
+                quality={90}
+                className="object-cover object-[42%_center]"
+                sizes="100vw"
+              />
+            </div>
+
+            {/* Mobile Stats */}
+            <div className="bg-white/90 dark:bg-[#2D2218]/80 backdrop-blur-xl border border-[#EFE7DD] dark:border-[#5A4A38]/30 rounded-3xl shadow-luxury dark:shadow-[0_4px_40px_rgba(0,0,0,0.25)] p-4">
+              <div className="grid grid-cols-3 gap-3">
+                {STATS.map((stat, index) => (
+                  <div key={index} className="stat-item flex flex-col items-center text-center">
+                    <div className={`flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-br ${stat.color} mb-1.5 shadow-md`}>
+                      <stat.icon className="w-3.5 h-3.5 text-white" />
+                    </div>
+                    <span className="text-sm font-display font-bold text-[#4A3A2A] dark:text-white leading-none">{stat.value}</span>
+                    <span className="text-[9px] text-[#7B6A58] dark:text-[#D8C9B3] font-medium mt-0.5 leading-tight">{stat.label}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
