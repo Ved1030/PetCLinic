@@ -9,10 +9,26 @@ import { NAV_LINKS, CONTACT_INFO } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import MobileMenu from "./MobileMenu";
 
+function isActiveLink(pathname: string, hash: string, linkHref: string): boolean {
+  const [linkPath, linkHash = ""] = linkHref.split("#");
+  if (linkHash) {
+    return pathname === linkPath && hash === `#${linkHash}`;
+  }
+  return pathname === linkHref && !hash;
+}
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [hash, setHash] = useState("");
   const pathname = usePathname();
+
+  useEffect(() => {
+    const onHashChange = () => setHash(window.location.hash);
+    onHashChange();
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -33,13 +49,14 @@ export default function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
           isScrolled
-            ? "bg-white/85 backdrop-blur-[10px] border-b border-[#EFE7DD] shadow-[0_1px_30px_rgba(74,58,42,0.06)]"
+            ? "bg-white/85 backdrop-blur-[10px]"
             : "bg-transparent"
         )}
+        style={{ borderTop: "none", borderBottom: "none", outline: "none" }}
       >
         <nav
           className={cn(
-            "max-w-[1400px] mx-auto flex items-center justify-between px-8 transition-all duration-500 ease-out",
+            "max-w-[1400px] mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-500 ease-out",
             isScrolled ? "h-[72px]" : "h-[88px]"
           )}
         >
@@ -71,9 +88,9 @@ export default function Navbar() {
 
           {/* Desktop Nav - Center */}
           <div className="hidden lg:flex items-center justify-center flex-1 px-12">
-            <div className="flex items-center gap-12">
+            <div className="flex items-center gap-8 xl:gap-12">
               {NAV_LINKS.map((link) => {
-                const isActive = pathname === link.href;
+                const isActive = isActiveLink(pathname, hash, link.href);
                 return (
                   <Link
                     key={link.href}
@@ -116,6 +133,7 @@ export default function Navbar() {
             {/* Book Appointment Button - Compact Pill */}
             <Link href="/appointment">
               <motion.button
+                suppressHydrationWarning
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="group relative overflow-hidden bg-gradient-to-r from-[#B98B5D] to-[#B98B5D] text-white h-[44px] px-6 rounded-full font-medium text-[14px] tracking-[-0.01em] shadow-[0_4px_16px_rgba(185,139,93,0.25)] hover:shadow-[0_6px_24px_rgba(185,139,93,0.35)] transition-shadow duration-300"

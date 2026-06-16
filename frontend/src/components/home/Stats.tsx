@@ -33,7 +33,7 @@ export default function Stats() {
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-gradient-to-br from-[#B98B5D]/10 via-transparent to-transparent rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-[#B98B5D]/10 via-transparent to-transparent rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
+      <div className="max-width relative z-10">
         <motion.div
           variants={staggerContainer}
           initial="hidden"

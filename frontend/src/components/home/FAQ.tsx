@@ -46,7 +46,7 @@ export default function FAQ() {
 
   return (
     <section ref={ref} className="py-20 lg:py-28 bg-gradient-to-b from-[#FAF7F2] to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-width">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}

@@ -44,8 +44,8 @@ export const SOCIAL_LINKS = {
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Reviews", href: "/testimonials" },
-  { label: "Contact", href: "/contact" },
+  { label: "About", href: "/#home" },
+  { label: "Services", href: "/#services" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "Contact", href: "/#contact" },
 ] as const;

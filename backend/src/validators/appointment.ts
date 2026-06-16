@@ -28,8 +28,10 @@ export const createBookingSchema = z.object({
 
 export const contactMessageSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
+  phone: z.string().min(10, "Phone number must be at least 10 characters"),
   email: z.string().email("Invalid email address"),
-  subject: z.string().min(1, "Subject is required").max(200),
+  petName: z.string().min(1, "Pet name is required").max(100),
+  petType: z.string().min(1, "Pet type is required").max(50),
   message: z.string().min(1, "Message is required").max(2000),
 });
 

@@ -147,7 +147,7 @@ export default function Gallery() {
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
         >
           <AnimatePresence mode="popLayout">
             {filtered.map((item, index) => (
@@ -156,7 +156,7 @@ export default function Gallery() {
                 layout
                 variants={fadeInUp}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="break-inside-avoid cursor-pointer group relative rounded-3xl overflow-hidden bg-white shadow-luxury hover:shadow-luxury-lg transition-all duration-500"
+                className="cursor-pointer group relative rounded-3xl overflow-hidden bg-white shadow-luxury hover:shadow-luxury-lg transition-all duration-500"
                 onClick={() => setSelectedIndex(index)}
               >
                 {/* Premium image placeholder */}
@@ -205,9 +205,11 @@ export default function Gallery() {
           className="text-center mt-14"
         >
           <Link href="/gallery">
-            <Button variant="outline" size="lg" className="group rounded-2xl border-[#EFE7DD] hover:border-[#B98B5D]/60 text-[#4A3A2A] hover:text-[#B98B5D]">
-              View Full Gallery
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            <Button variant="outline" size="lg" asChild>
+              <span className="group rounded-2xl border-[#EFE7DD] hover:border-[#B98B5D]/60 text-[#4A3A2A] hover:text-[#B98B5D]">
+                View Full Gallery
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </span>
             </Button>
           </Link>
         </motion.div>
@@ -256,10 +258,10 @@ export default function Gallery() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.85, opacity: 0 }}
               transition={{ type: "spring", damping: 30, stiffness: 200 }}
-              className="max-w-5xl w-full mx-4 sm:mx-8"
+              className="max-w-5xl w-full mx-2 sm:mx-8"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="aspect-[16/10] rounded-3xl overflow-hidden bg-[#4A3A2A] relative shadow-2xl">
+              <div className="aspect-[4/3] sm:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#4A3A2A] relative shadow-2xl">
                 {filtered[selectedIndex] && (
                   <Image
                     src={filtered[selectedIndex].src}

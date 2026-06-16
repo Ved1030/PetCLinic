@@ -38,7 +38,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="pt-32 pb-16 bg-gradient-to-b from-[#FAF7F2] via-white to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-width">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -64,7 +64,7 @@ export default function AboutPage() {
       </section>
 
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-width">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -91,7 +91,7 @@ export default function AboutPage() {
       </section>
 
       <section className="py-20 bg-gradient-to-b from-[#FAF7F2] to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-width">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -99,7 +99,8 @@ export default function AboutPage() {
             variants={fadeInUp}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-4xl font-display font-bold tracking-[-0.02em] text-[#4A3A2A] mb-4">
+            <h2 className="text-4xl font-display font-bold tracking-[-0.02em] text-[#4A3A2A] mb-4"
+          >
               Meet Our Doctor
             </h2>
             <p className="text-lg text-[#7B6A58]">
@@ -117,13 +118,13 @@ export default function AboutPage() {
             {teamMembers.map((member) => (
               <motion.div key={member.name} variants={fadeInUp}>
                 <div className="text-center rounded-3xl bg-white border border-[#EFE7DD] hover:border-[#B98B5D]/40 hover:shadow-luxury transition-all duration-500 group overflow-hidden">
-                  <div className="relative w-full aspect-[3/4] bg-[#F5EFE5]">
+                  <div className="relative w-full max-w-[400px] mx-auto aspect-[3/4] bg-[#F5EFE5]">
                     <Image
                       src="https://images.pexels.com/photos/6235664/pexels-photo-6235664.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&dpr=2"
                       alt="Professional veterinarian Dr. Komal"
                       fill
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                      sizes="400px"
+                      sizes="(max-width: 768px) 100vw, 400px"
                       priority
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#4A3A2A]/60 via-transparent to-transparent" />
@@ -141,7 +142,7 @@ export default function AboutPage() {
       </section>
 
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-width text-center">
           <motion.div
             initial="hidden"
             whileInView="visible"

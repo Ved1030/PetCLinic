@@ -67,7 +67,7 @@ export default function Services() {
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-[#E9DDD0]/30 via-transparent to-transparent rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-[#B98B5D]/10 via-transparent to-transparent rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-width relative z-10">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -133,10 +133,10 @@ export default function Services() {
           className="text-center mt-14"
         >
           <Link href="/services">
-            <button className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl border border-[#EFE7DD] bg-white text-[#4A3A2A] font-medium text-sm hover:border-[#B98B5D]/60 hover:text-[#B98B5D] hover:shadow-luxury transition-all duration-300 group">
+            <span className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl border border-[#EFE7DD] bg-white text-[#4A3A2A] font-medium text-sm hover:border-[#B98B5D]/60 hover:text-[#B98B5D] hover:shadow-luxury transition-all duration-300 group cursor-pointer">
               View All Services
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-            </button>
+            </span>
           </Link>
         </motion.div>
       </div>

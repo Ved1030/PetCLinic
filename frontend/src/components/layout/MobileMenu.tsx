@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -22,8 +23,24 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } },
 };
 
+function isActiveLink(pathname: string, hash: string, linkHref: string): boolean {
+  const [linkPath, linkHash = ""] = linkHref.split("#");
+  if (linkHash) {
+    return pathname === linkPath && hash === `#${linkHash}`;
+  }
+  return pathname === linkHref && !hash;
+}
+
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const [hash, setHash] = useState("");
   const pathname = usePathname();
+
+  useEffect(() => {
+    const onHashChange = () => setHash(window.location.hash);
+    onHashChange();
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
 
   const allLinks = NAV_LINKS;
 
@@ -46,7 +63,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             className="absolute inset-x-0 top-0 bottom-0 bg-white"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex flex-col h-full pt-24 pb-8 px-8 overflow-y-auto">
+            <div className="flex flex-col h-full pt-24 pb-8 px-4 sm:px-8 overflow-y-auto">
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -54,7 +71,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 className="flex-1"
               >
                 {allLinks.map((link) => {
-                  const isActive = pathname === link.href || pathname.startsWith(link.href.replace(/#.*/, ""));
+                  const isActive = isActiveLink(pathname, hash, link.href);
                   return (
                     <motion.div key={link.href} variants={itemVariants}>
                       <Link

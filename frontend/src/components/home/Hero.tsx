@@ -90,7 +90,7 @@ export default function Hero() {
   const line1Words = useMemo(() => "Advanced Veterinary Care For Your Beloved Pets".split(" "), []);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen w-full overflow-hidden bg-[#FAF7F2]">
+    <section ref={containerRef} id="home" className="relative min-h-screen w-full overflow-hidden bg-[#FAF7F2]">
 
       {/* Decorative Elements */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[#E9DDD0]/40 via-transparent to-transparent rounded-full blur-3xl pointer-events-none" />
@@ -100,7 +100,7 @@ export default function Hero() {
       <motion.div
         ref={imageContainerRef}
         style={{ y: imageParallaxY, scale: imageScale }}
-        className="absolute top-0 right-0 h-full w-[55%] lg:w-[60%] -translate-x-24 opacity-0 z-0"
+        className="absolute top-0 right-0 h-full w-[58%] lg:w-[63%] opacity-0 z-0 hidden lg:block"
       >
         <div className="absolute inset-0 rounded-l-[40px] overflow-hidden">
           <Image
@@ -109,12 +109,12 @@ export default function Hero() {
             fill
             priority
             quality={92}
-            className="object-cover object-center"
+            className="object-cover object-[42%_center]"
             sizes="(max-width: 1024px) 100vw, 60vw"
           />
         </div>
         {/* Fade left edge into background */}
-        <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#FAF7F2] via-[#FAF7F2]/60 to-transparent w-[45%]" />
+        <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#FAF7F2] via-[#FAF7F2]/60 to-transparent w-[35%]" />
 
         {/* Stats Card */}
         <motion.div
@@ -138,8 +138,8 @@ export default function Hero() {
       </motion.div>
 
       {/* ═══════════════ CONTENT ═══════════════ */}
-      <div className="relative z-10 w-full min-h-screen flex items-center px-6 sm:px-10 lg:px-14 xl:px-20 pt-28 sm:pt-32 lg:pt-0">
-        <div className="w-full max-w-[580px] py-10 sm:py-12 lg:py-0">
+      <div className="relative z-10 w-full min-h-screen flex items-center px-4 sm:px-6 lg:px-16 xl:px-24 pt-28 sm:pt-32 lg:pt-0">
+        <div className="w-full max-w-[520px] lg:max-w-[560px] xl:max-w-[620px] py-10 sm:py-12 lg:py-0">
 
           {/* Heading */}
           <h1 ref={headingRef} className="text-[clamp(2.6rem,5vw,4.2rem)] font-display font-bold leading-[1.08] tracking-[-0.02em] text-[#4A3A2A] mb-6 sm:mb-8" style={{ perspective: "800px" }}>
@@ -154,27 +154,27 @@ export default function Hero() {
           </p>
 
           {/* CTA Buttons */}
-          <div ref={ctaContainerRef} className="flex flex-col sm:flex-row items-start gap-4">
-            <Link href="/appointment" className="cta-btn">
+          <div ref={ctaContainerRef} className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4 w-full sm:w-auto">
+            <Link href="/appointment" className="cta-btn w-full sm:w-auto">
               <MagneticButton strength={0.2}>
-                <button className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#B98B5D] via-[#B98B5D] to-[#B98B5D] h-[52px] min-w-[200px] px-7 text-white font-semibold text-[15px] shadow-[0_8px_30px_rgba(185,139,93,0.3)] hover:shadow-[0_12px_40px_rgba(185,139,93,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-[0.98]">
+                <span className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#B98B5D] via-[#B98B5D] to-[#B98B5D] h-[52px] w-full sm:w-auto min-w-0 sm:min-w-[200px] px-7 text-white font-semibold text-[15px] shadow-[0_8px_30px_rgba(185,139,93,0.3)] hover:shadow-[0_12px_40px_rgba(185,139,93,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center cursor-pointer">
                   <span className="relative z-10 flex items-center justify-center gap-2.5">
                     <Calendar className="w-[18px] h-[18px]" />
                     Book Appointment
                   </span>
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent" style={{ transitionDuration: "800ms" }} />
-                </button>
+                </span>
               </MagneticButton>
             </Link>
 
-            <a href={`tel:${CONTACT_INFO.phone}`} className="cta-btn">
+            <a href={`tel:${CONTACT_INFO.phone}`} className="cta-btn w-full sm:w-auto">
               <MagneticButton strength={0.2}>
-                <button className="group relative overflow-hidden rounded-2xl h-[52px] min-w-[200px] px-7 text-[#4A3A2A] font-semibold text-[15px] border border-[#EFE7DD] bg-white hover:border-[#B98B5D]/60 hover:shadow-[0_4px_20px_rgba(185,139,93,0.1)] transition-all duration-500 hover:scale-[1.02] active:scale-[0.98]">
+                <span className="group relative overflow-hidden rounded-2xl h-[52px] w-full sm:w-auto min-w-0 sm:min-w-[200px] px-7 text-[#4A3A2A] font-semibold text-[15px] border border-[#EFE7DD] bg-white hover:border-[#B98B5D]/60 hover:shadow-[0_4px_20px_rgba(185,139,93,0.1)] transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center cursor-pointer">
                   <span className="flex items-center justify-center gap-2.5">
                     <Phone className="w-[18px] h-[18px] text-[#B98B5D]" />
                     Call Now
                   </span>
-                </button>
+                </span>
               </MagneticButton>
             </a>
           </div>
@@ -182,7 +182,7 @@ export default function Hero() {
       </div>
 
       {/* ═══════════════ MOBILE STATS ═══════════════ */}
-      <div className="lg:hidden absolute bottom-8 left-6 right-6 z-20">
+      <div className="lg:hidden relative z-20 w-full px-4 sm:px-6 -mt-12 pb-8">
         <div className="bg-white/90 backdrop-blur-xl border border-[#EFE7DD] rounded-3xl shadow-luxury p-4">
           <div className="grid grid-cols-3 gap-3">
             {STATS.map((stat, index) => (

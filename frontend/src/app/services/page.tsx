@@ -21,7 +21,7 @@ export default function ServicesPage() {
   return (
     <>
       <section className="pt-32 pb-16 bg-gradient-to-b from-[#FAF7F2] via-white to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-width text-center">
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
             <span className="inline-block px-5 py-2 rounded-full bg-white border border-[#EFE7DD] text-[#B98B5D] text-sm font-semibold tracking-wide mb-5">
               Our Services
@@ -41,7 +41,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-width">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -68,7 +68,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="py-20 bg-gradient-to-b from-[#FAF7F2] to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-width text-center">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -82,11 +82,11 @@ export default function ServicesPage() {
               Contact us for a consultation. Dr. Komal will help determine the best care plan for your pet.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button variant="outline" size="xl" className="rounded-2xl">Contact Us</Button>
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button variant="outline" size="xl" className="rounded-2xl w-full sm:w-auto">Contact Us</Button>
               </Link>
-              <Link href="/appointment">
-                <Button variant="gradient" size="xl" className="rounded-2xl">
+              <Link href="/appointment" className="w-full sm:w-auto">
+                <Button variant="gradient" size="xl" className="rounded-2xl w-full sm:w-auto">
                   Book Now
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>

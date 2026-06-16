@@ -121,7 +121,7 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed bottom-28 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)] h-[580px] max-h-[calc(100vh-160px)] shadow-2xl"
+            className="fixed bottom-28 right-4 sm:right-6 z-50 w-[380px] max-w-[calc(100vw-32px)] sm:max-w-[calc(100vw-48px)] h-[580px] max-h-[calc(100vh-160px)] shadow-2xl"
             style={{
               background: "rgba(255, 255, 255, 0.85)",
               backdropFilter: "blur(24px) saturate(1.4)",
@@ -274,9 +274,10 @@ export default function ChatWidget() {
 
       {/* FAB */}
       <button
+        suppressHydrationWarning
         onClick={toggleChat}
         aria-label="Toggle chat"
-        className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95"
+        className="fixed bottom-6 right-4 sm:right-6 z-50 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95"
         style={{
           background: "linear-gradient(135deg, #4A3A2A, #5A4A38)",
           boxShadow: "0 4px 20px rgba(74, 58, 42, 0.3)",

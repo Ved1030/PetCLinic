@@ -33,7 +33,7 @@ export default function ScrollProgress() {
           scale: isVisible ? 1 : 0,
         }}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-2xl bg-gradient-to-r from-[#B98B5D] to-[#B98B5D] text-white shadow-[0_4px_20px_rgba(185,139,93,0.3)] flex items-center justify-center hover:shadow-[0_8px_30px_rgba(185,139,93,0.4)] transition-shadow duration-300"
+        className="fixed bottom-24 right-4 sm:right-6 z-40 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-r from-[#B98B5D] to-[#B98B5D] text-white shadow-[0_4px_20px_rgba(185,139,93,0.3)] flex items-center justify-center hover:shadow-[0_8px_30px_rgba(185,139,93,0.4)] transition-shadow duration-300"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         aria-label="Scroll to top"

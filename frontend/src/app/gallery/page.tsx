@@ -29,7 +29,7 @@ export default function GalleryPage() {
   return (
     <>
       <section className="pt-32 pb-16 bg-gradient-to-b from-[#FAF7F2] via-white to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-width text-center">
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
             <span className="inline-block px-5 py-2 rounded-full bg-white border border-[#EFE7DD] text-[#B98B5D] text-sm font-semibold tracking-wide mb-5">
               Gallery
@@ -48,13 +48,13 @@ export default function GalleryPage() {
       </section>
 
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="max-width">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
+                className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${
                   activeCategory === cat
                     ? "bg-gradient-to-r from-[#B98B5D] to-[#B98B5D] text-white shadow-lg shadow-[#B98B5D]/25"
                     : "bg-white border border-[#EFE7DD] text-[#7B6A58] hover:border-[#B98B5D]/40 hover:text-[#4A3A2A]"
@@ -105,8 +105,8 @@ export default function GalleryPage() {
             <button onClick={() => setSelectedImage(null)} className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors z-10" aria-label="Close">
               <X className="w-8 h-8" />
             </button>
-              <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} className="max-w-4xl w-full text-center" onClick={(e) => e.stopPropagation()}>
-                <div className="aspect-[4/3] rounded-3xl overflow-hidden relative bg-[#4A3A2A] mb-4 shadow-2xl">
+              <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} className="max-w-4xl w-full text-center px-2 sm:px-0" onClick={(e) => e.stopPropagation()}>
+                <div className="aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden relative bg-[#4A3A2A] mb-4 shadow-2xl">
                   <Image
                     src={selectedImage.src}
                     alt={selectedImage.alt}
@@ -116,8 +116,8 @@ export default function GalleryPage() {
                     priority
                   />
                 </div>
-              <h3 className="text-white text-xl font-display font-semibold">{selectedImage.alt}</h3>
-              <p className="text-white/70 mt-2">{selectedImage.description}</p>
+              <h3 className="text-white text-lg sm:text-xl font-display font-semibold">{selectedImage.alt}</h3>
+              <p className="text-white/70 text-sm sm:text-base mt-2">{selectedImage.description}</p>
             </motion.div>
           </motion.div>
         )}

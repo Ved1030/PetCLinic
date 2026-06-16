@@ -13,7 +13,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-[96px] right-6 z-40 group flex items-center justify-center w-14 h-14 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95"
+      className="fixed bottom-[96px] right-4 sm:right-6 z-40 group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95"
       style={{
         backgroundColor: "#25D366",
         boxShadow: "0 4px 20px rgba(37, 211, 102, 0.3)",
@@ -21,7 +21,7 @@ export default function WhatsAppButton() {
     >
       <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ backgroundColor: "#25D366" }} />
       <MessageCircle className="w-7 h-7 text-white" />
-      <span className="absolute right-16 top-1/2 -translate-y-1/2 bg-white text-[#075E54] text-sm font-medium px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+      <span className="absolute right-16 top-1/2 -translate-y-1/2 bg-white text-[#075E54] text-sm font-medium px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none hidden sm:block">
         WhatsApp Us
       </span>
     </a>

@@ -217,7 +217,7 @@ export default function AppointmentFlow() {
   return (
     <div className="w-full max-w-2xl mx-auto">
       {/* Progress Steps */}
-      <div className="flex items-center justify-between mb-10 px-2">
+      <div className="flex items-center justify-between mb-10 px-1 sm:px-2">
         {STEP_HEADERS.map((_, i) => (
           <div key={i} className="flex items-center">
             <div className="flex flex-col items-center">
@@ -239,7 +239,7 @@ export default function AppointmentFlow() {
               </div>
             </div>
             {i < STEP_HEADERS.length - 1 && (
-              <div className={`w-10 sm:w-16 h-0.5 mx-1 sm:mx-2 transition-colors duration-300 ${i < step ? "bg-[#B98B5D]" : "bg-[#EFE7DD]"}`} />
+              <div className={`w-6 sm:w-10 md:w-16 h-0.5 mx-0.5 sm:mx-1 md:mx-2 transition-colors duration-300 ${i < step ? "bg-[#B98B5D]" : "bg-[#EFE7DD]"}`} />
             )}
           </div>
         ))}
@@ -307,7 +307,7 @@ export default function AppointmentFlow() {
           {/* STEP 1: Date Selection */}
           {step === 1 && (
             <div className="flex flex-col items-center">
-              <div className="p-4 rounded-2xl bg-white border border-[#EFE7DD] shadow-sm w-full max-w-md">
+              <div className="p-3 sm:p-4 rounded-2xl bg-white border border-[#EFE7DD] shadow-sm w-full max-w-md overflow-x-auto">
                 <DayPicker
                   mode="single"
                   selected={selectedDate}
@@ -315,21 +315,21 @@ export default function AppointmentFlow() {
                   disabled={disabledDays}
                   fromDate={new Date()}
                   toDate={addDays(new Date(), 60)}
-                  className="!m-0"
+                  className="!m-0 !w-full"
                   styles={{
-                    root: { width: "100%" },
+                    root: { width: "100%", minWidth: "280px" },
                     month: { width: "100%" },
                     table: { width: "100%" },
                     head_cell: {
                       color: "#7B6A58",
-                      fontSize: "13px",
+                      fontSize: "12px",
                       fontWeight: 600,
-                      padding: "8px 4px",
+                      padding: "6px 2px",
                     },
                     day: {
                       color: "#4A3A2A",
-                      borderRadius: "10px",
-                      fontSize: "14px",
+                      borderRadius: "8px",
+                      fontSize: "13px",
                       fontWeight: 500,
                       width: "100%",
                       height: "100%",
@@ -339,24 +339,24 @@ export default function AppointmentFlow() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      padding: "0 8px",
-                      marginBottom: "12px",
+                      padding: "0 4px",
+                      marginBottom: "8px",
                     },
                     caption: {
                       color: "#4A3A2A",
                       fontWeight: 700,
-                      fontSize: "16px",
+                      fontSize: "14px",
                     },
                   }}
                   modifiersStyles={{
                     selected: {
                       background: "linear-gradient(135deg, #B98B5D, #A67A4A)",
                       color: "white",
-                      borderRadius: "10px",
+                      borderRadius: "8px",
                     },
                     today: {
                       border: "2px solid #B98B5D",
-                      borderRadius: "10px",
+                      borderRadius: "8px",
                     },
                     disabled: {
                       color: "#D8C9B3",
@@ -389,7 +389,7 @@ export default function AppointmentFlow() {
                   </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                   {slots.map((slot) => {
                     const isAvailable = slot.status === "available";
                     const isBooked = slot.status === "booked";
@@ -452,7 +452,7 @@ export default function AppointmentFlow() {
           {/* STEP 3: Patient Info */}
           {step === 3 && (
             <div className="space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="space-y-1.5">
                   <Label className="text-[#4A3A2A] text-sm font-medium">Pet Name *</Label>
                   <Input

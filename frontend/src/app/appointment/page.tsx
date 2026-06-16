@@ -16,7 +16,7 @@ export default function AppointmentPage() {
   return (
     <>
       <section className="pt-32 pb-16 bg-gradient-to-b from-[#FAF7F2] via-white to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-width text-center">
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
             <span className="inline-block px-5 py-2 rounded-full bg-white border border-[#EFE7DD] text-[#B98B5D] text-sm font-semibold tracking-wide mb-5">
               Book an Appointment
@@ -36,8 +36,8 @@ export default function AppointmentPage() {
       </section>
 
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div className="max-width">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
             <div className="lg:col-span-2">
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
                 <div className="p-7 rounded-3xl bg-white border border-[#EFE7DD] shadow-luxury">
@@ -59,7 +59,7 @@ export default function AppointmentPage() {
                         <div className="p-2 rounded-xl bg-[#FAF7F2] text-[#B98B5D] shrink-0">
                           <Icon className="w-4 h-4" />
                         </div>
-                        <div>
+                        <div className="min-w-0">
                           <p className="font-medium text-sm text-[#4A3A2A]">{benefit.title}</p>
                           <p className="text-xs text-[#7B6A58] mt-0.5 leading-relaxed">{benefit.description}</p>
                         </div>

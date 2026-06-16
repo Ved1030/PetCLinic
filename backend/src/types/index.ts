@@ -46,8 +46,10 @@ export interface ChatMessage {
 export interface ContactMessage {
   id: string;
   name: string;
+  phone: string;
   email: string;
-  subject: string;
+  petName: string;
+  petType: string;
   message: string;
   createdAt: string;
 }

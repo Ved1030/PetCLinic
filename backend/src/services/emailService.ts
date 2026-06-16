@@ -1,5 +1,5 @@
 import { config } from "../config";
-import { Appointment } from "../types";
+import { Appointment, ContactMessage } from "../types";
 import { logger } from "../utils/logger";
 import type { Transporter } from "nodemailer";
 
@@ -194,6 +194,69 @@ export const emailService = {
           <tr><td style="padding: 6px 0; color: #7B6A58;">Phone</td><td style="font-weight: 600;">${appointment.phone}</td></tr>
           <tr><td style="padding: 6px 0; color: #7B6A58;">Email</td><td style="font-weight: 600;">${appointment.email}</td></tr>
           ${appointment.reason ? `<tr><td style="padding: 6px 0; color: #7B6A58;">Reason</td><td style="font-weight: 600;">${appointment.reason}</td></tr>` : ""}
+        </table>
+      </div>
+    `;
+
+    await sendEmail({ to: config.clinicEmail, subject, html });
+  },
+
+  async sendContactConfirmation(inquiry: ContactMessage): Promise<void> {
+    const subject = "Thank You for Contacting THE OZONE VETS";
+    const html = `
+      <div style="font-family: 'Georgia', serif; max-width: 600px; margin: 0 auto; padding: 30px; background: #FAF7F2; border-radius: 16px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <h1 style="color: #4A3A2A; font-size: 28px; margin: 0;">THE OZONE VETS</h1>
+          <p style="color: #B98B5D; font-size: 14px; margin: 5px 0 0;">Advanced Veterinary Care With Compassion</p>
+        </div>
+
+        <div style="background: white; border-radius: 12px; padding: 25px; border: 1px solid #EFE7DD;">
+          <h2 style="color: #4A3A2A; font-size: 20px; margin: 0 0 10px;">Thank You for Reaching Out 🙏</h2>
+          <p style="color: #7B6A58; font-size: 14px; line-height: 1.6; margin: 0 0 20px;">
+            Dear ${inquiry.name},<br><br>
+            Thank you for contacting THE OZONE VETS. Our veterinary team has received your inquiry and will get back to you shortly.
+          </p>
+
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; color: #7B6A58; font-size: 14px; width: 120px;">Pet Name</td>
+              <td style="padding: 8px 0; color: #4A3A2A; font-size: 14px; font-weight: 600;">${inquiry.petName}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #7B6A58; font-size: 14px;">Pet Type</td>
+              <td style="padding: 8px 0; color: #4A3A2A; font-size: 14px; font-weight: 600;">${inquiry.petType}</td>
+            </tr>
+            ${inquiry.message ? `<tr><td style="padding: 8px 0; color: #7B6A58; font-size: 14px; vertical-align: top;">Message</td><td style="padding: 8px 0; color: #4A3A2A; font-size: 14px;">${inquiry.message}</td></tr>` : ""}
+          </table>
+        </div>
+
+        <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 12px; border: 1px solid #EFE7DD;">
+          <h3 style="color: #4A3A2A; font-size: 16px; margin: 0 0 10px;">📍 THE OZONE VETS</h3>
+          <p style="color: #7B6A58; font-size: 13px; line-height: 1.6; margin: 0;">
+            C3 SARANGA, Lokhandwala Complex Market<br>
+            Bungalow, 3rd Cross Road, Opp. Cliff Tower<br>
+            Andheri West, Mumbai 400053<br>
+            Phone: +91 98204 45010
+          </p>
+        </div>
+      </div>
+    `;
+
+    await sendEmail({ to: inquiry.email, subject, html });
+  },
+
+  async sendContactClinicNotification(inquiry: ContactMessage): Promise<void> {
+    const subject = `New Inquiry: ${inquiry.name} - ${inquiry.petName} (${inquiry.petType})`;
+    const html = `
+      <div style="font-family: 'Georgia', serif; max-width: 600px; margin: 0 auto; padding: 30px;">
+        <h2 style="color: #4A3A2A;">New Contact Inquiry</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr><td style="padding: 6px 0; color: #7B6A58; width: 120px;">Name</td><td style="font-weight: 600;">${inquiry.name}</td></tr>
+          <tr><td style="padding: 6px 0; color: #7B6A58;">Phone</td><td style="font-weight: 600;">${inquiry.phone}</td></tr>
+          <tr><td style="padding: 6px 0; color: #7B6A58;">Email</td><td style="font-weight: 600;">${inquiry.email}</td></tr>
+          <tr><td style="padding: 6px 0; color: #7B6A58;">Pet Name</td><td style="font-weight: 600;">${inquiry.petName}</td></tr>
+          <tr><td style="padding: 6px 0; color: #7B6A58;">Pet Type</td><td style="font-weight: 600;">${inquiry.petType}</td></tr>
+          ${inquiry.message ? `<tr><td style="padding: 6px 0; color: #7B6A58; vertical-align: top;">Message</td><td style="font-weight: 600;">${inquiry.message}</td></tr>` : ""}
         </table>
       </div>
     `;
