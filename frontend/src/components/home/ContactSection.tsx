@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { MapPin, Phone, Clock, Mail } from "lucide-react";
-import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer } from "@/lib/animations";
+import { fadeInUp, fadeInRight, staggerContainer } from "@/lib/animations";
 import { CONTACT_INFO } from "@/lib/constants";
 import GoogleMap from "@/components/contact/GoogleMap";
 import ContactForm from "@/components/forms/ContactForm";

@@ -113,18 +113,7 @@ export default function AppointmentFlow() {
     });
   }, [selectedDate, updateForm]);
 
-  const canProceed = useCallback(() => {
-    switch (step) {
-      case 0: return !!formData.service;
-      case 1: return !!selectedDate;
-      case 2: return !!formData.time;
-      case 3: return validateStep3();
-      case 4: return true;
-      default: return false;
-    }
-  }, [step, formData, selectedDate]);
-
-  const validateStep3 = (): boolean => {
+  const validateStep3 = useCallback((): boolean => {
     const errs: Record<string, string> = {};
     if (!formData.petName.trim()) errs.petName = "Pet name is required";
     if (!formData.petType.trim()) errs.petType = "Pet type is required";
@@ -136,7 +125,18 @@ export default function AppointmentFlow() {
     else if (formData.phone.replace(/[\s\-]/g, "").length < 10) errs.phone = "Enter at least 10 digits";
     setFormErrors(errs);
     return Object.keys(errs).length === 0;
-  };
+  }, [formData]);
+
+  const canProceed = useCallback(() => {
+    switch (step) {
+      case 0: return !!formData.service;
+      case 1: return !!selectedDate;
+      case 2: return !!formData.time;
+      case 3: return validateStep3();
+      case 4: return true;
+      default: return false;
+    }
+  }, [step, formData, selectedDate, validateStep3]);
 
   const handleNext = () => {
     if (step === 3 && !validateStep3()) return;
@@ -203,8 +203,6 @@ export default function AppointmentFlow() {
     const ampm = h >= 12 ? "PM" : "AM";
     return `${h % 12 || 12}:${m.toString().padStart(2, "0")} ${ampm}`;
   };
-
-  const getServiceLabel = (id: string) => SERVICES.find((s) => s.id === id)?.label || id;
 
   const whatsappMessage = result
     ? `Hello THE OZONE VETS,%0A%0AI have booked an appointment:%0A• Service: ${result.service}%0A• Date: ${result.date}%0A• Time: ${formatTimeDisplay(result.time)}%0A• Pet: ${result.petName}%0A• Owner: ${result.ownerName}%0A• Confirmation: ${result.id}%0A%0APlease confirm my appointment. Thank you!`

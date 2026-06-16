@@ -3,8 +3,8 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { Shield, Heart, Stethoscope, Scissors, Home, Users, Award, Star, Check } from "lucide-react";
-import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer } from "@/lib/animations";
+import { Shield, Heart, Stethoscope, Scissors, Home, Users, Award, Star } from "lucide-react";
+import { fadeInUp, fadeInLeft, staggerContainer } from "@/lib/animations";
 
 const stats = [
   { icon: Star, value: "178+", label: "Google Reviews" },

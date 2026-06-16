@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, X, Send, Loader2, PawPrint, ChevronDown, Calendar } from "lucide-react";
 import { useAppStore } from "@/store";
@@ -25,9 +25,9 @@ const BOOK_MARKER = "[Book Appointment]";
 
 function formatMessageContent(content: string) {
   const lines = content.split('\n');
-  const elements: any[] = [];
-  let listItems: any[] = [];
-  let flushList = (key: string) => {
+  const elements: React.ReactNode[] = [];
+  let listItems: React.ReactNode[] = [];
+  const flushList = (key: string) => {
     if (listItems.length > 0) {
       elements.push(<ul key={key} className="list-disc ml-5 space-y-1 my-1.5 text-[#4A3A2A]">{listItems}</ul>);
       listItems = [];
