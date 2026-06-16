@@ -5,8 +5,8 @@ import { verifyEmailConnection } from "./services/emailService";
 
 const server = app.listen(config.port, async () => {
   logger.info(`Server running on port ${config.port} in ${config.nodeEnv} mode`);
-  logger.info(`API available at http://localhost:${config.port}${config.apiPrefix}`);
-  logger.info(`Health check at http://localhost:${config.port}${config.apiPrefix}/health`);
+  logger.info(`API available at port ${config.port}${config.apiPrefix}`);
+  logger.info(`Health check at ${config.apiPrefix}/health`);
 
   if (config.emailHost && config.emailUser && config.emailPass) {
     logger.info("Email SMTP credentials found — verifying connection...");

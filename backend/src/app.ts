@@ -15,30 +15,49 @@ import { logger } from "./utils/logger";
 const app = express();
 
 // Security middleware
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginEmbedderPolicy: false,
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        imgSrc: ["'self'", "data:", "blob:", "https://*.google.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        connectSrc: ["'self'", ...config.corsOrigins],
+        frameSrc: ["'self'", "https://www.google.com"],
+      },
+    },
+  })
+);
 app.use(
   cors({
-    origin: config.corsOrigin,
+    origin: (origin, callback) => {
+      if (!origin || config.corsOrigins.includes(origin) || config.isDev) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
 
-// Rate limiting
+// Rate limiting - stricter in production
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: config.isProd ? 50 : 100,
   message: { success: false, message: "Too many requests, please try again later." },
 });
 app.use(config.apiPrefix, limiter);
 
-// Body parsing
+// Body parsing with size limits
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
 // Logging
-if (config.isDev) {
-  app.use(morgan("dev"));
-}
+app.use(morgan(config.isDev ? "dev" : "combined"));
 
 // Health check
 app.get(`${config.apiPrefix}/health`, (_req, res) => {
@@ -55,7 +74,10 @@ app.use(`${config.apiPrefix}/appointments`, appointmentRoutes);
 app.use(`${config.apiPrefix}/contact`, contactRoutes);
 app.use(`${config.apiPrefix}/data`, staticDataRoutes);
 app.use(`${config.apiPrefix}/chat`, chatRoutes);
-app.use(`${config.apiPrefix}/test-email`, testEmailRoutes);
+
+if (config.isDev) {
+  app.use(`${config.apiPrefix}/test-email`, testEmailRoutes);
+}
 
 // 404 handler
 app.use((_req, res) => {

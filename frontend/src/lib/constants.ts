@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   description:
     "THE OZONE VETS provides advanced diagnostics, consultations, ozone therapy, acupuncture, pet grooming, boarding, and compassionate veterinary care for pets across Mumbai.",
   url: "https://theozonevets.com",
-  ogImage: "/images/og-image.jpg",
+  ogImage: "/images/logo.png",
   keywords: [
     "veterinary clinic",
     "pet care",

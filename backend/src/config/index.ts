@@ -2,10 +2,16 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+function parseCorsOrigins(): string[] {
+  const raw = process.env.CORS_ORIGIN;
+  if (!raw) return ["http://localhost:3000"];
+  return raw.split(",").map((s) => s.trim()).filter(Boolean);
+}
+
 export const config = {
   port: parseInt(process.env.PORT || "5000", 10),
   nodeEnv: process.env.NODE_ENV || "development",
-  corsOrigin: process.env.CORS_ORIGIN || "http://localhost:3000",
+  corsOrigins: parseCorsOrigins(),
   apiPrefix: process.env.API_PREFIX || "/api",
   isDev: (process.env.NODE_ENV || "development") === "development",
   isProd: process.env.NODE_ENV === "production",
