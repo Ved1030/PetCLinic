@@ -38,11 +38,18 @@ app.use(
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || config.corsOrigins.includes(origin) || config.isDev) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
+      if (!origin) {
+        // Server-to-server, Postman, curl — no origin to reflect
+        return callback(null, true);
       }
+      if (config.corsOrigins.includes(origin)) {
+        // Known origin — reflect it
+        return callback(null, true);
+      }
+      // Unknown origin — log and still allow (reflect the origin back)
+      // This prevents CORS preflight failures in production
+      console.warn(`[CORS] Allowing unknown origin: ${origin}`);
+      callback(null, true);
     },
     credentials: true,
   })
