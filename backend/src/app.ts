@@ -38,17 +38,30 @@ app.use(
 app.use(
   cors({
     origin: (origin, callback) => {
+      // ── Diagnostic logging ──
+      console.log("[CORS] Incoming Origin:", JSON.stringify(origin));
+      console.log("[CORS] Allowed Origins:", JSON.stringify(config.corsOrigins));
+
       if (!origin) {
         // Server-to-server, Postman, curl — no origin to reflect
         return callback(null, true);
       }
-      if (config.corsOrigins.includes(origin)) {
-        // Known origin — reflect it
+
+      // ── Normalize: strip trailing slash ──
+      const normalizedOrigin = origin.replace(/\/+$/, "");
+      const normalizedAllowed = config.corsOrigins.map((o) => o.replace(/\/+$/, ""));
+
+      console.log("[CORS] Normalized Origin:", JSON.stringify(normalizedOrigin));
+      console.log("[CORS] Normalized Allowed:", JSON.stringify(normalizedAllowed));
+
+      if (normalizedAllowed.includes(normalizedOrigin)) {
+        console.log(`[CORS] Origin MATCHED: ${normalizedOrigin}`);
         return callback(null, true);
       }
-      // Unknown origin — log and still allow (reflect the origin back)
+
+      // ── Unknown origin — log and STILL allow ──
       // This prevents CORS preflight failures in production
-      console.warn(`[CORS] Allowing unknown origin: ${origin}`);
+      console.warn(`[CORS] Unknown origin (but allowing): ${origin}`);
       callback(null, true);
     },
     credentials: true,

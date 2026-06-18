@@ -42,8 +42,16 @@ validateEnv();
 
 function parseCorsOrigins(): string[] {
   const raw = process.env.CORS_ORIGIN;
-  if (!raw) return ["http://localhost:3000", "https://petclinic-drekta.vercel.app", "https://www.petclinic-drekta.vercel.app", "https://petclinicghatkopar.vercel.app", "https://petclinicghatkopar.com"];
-  return raw.split(",").map((s) => s.trim()).filter(Boolean);
+  let origins: string[];
+  if (!raw) {
+    origins = ["http://localhost:3000", "https://petclinic-drekta.vercel.app", "https://www.petclinic-drekta.vercel.app", "https://petclinicghatkopar.vercel.app", "https://petclinicghatkopar.com"];
+  } else {
+    origins = raw.split(",").map((s) => s.trim()).filter(Boolean);
+  }
+  // Normalize: strip trailing slashes
+  origins = origins.map((o) => o.replace(/\/+$/, ""));
+  console.log("[CONFIG] Normalized CORS origins:", JSON.stringify(origins));
+  return origins;
 }
 
 export const config = {
