@@ -24,12 +24,20 @@ apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
-      const message = error.response.data?.message || "An error occurred";
+      const status = error.response.status;
+      const respData = error.response.data;
+      const serverMsg = respData?.message || respData?.error || "";
+      const message = serverMsg || `Server error (${status})`;
+      console.error(`[Axios] ${error.config?.method?.toUpperCase()} ${error.config?.url} → ${status}: ${message}`);
       return Promise.reject(new Error(message));
     }
     if (error.request) {
+      const url = error.config?.baseURL || "";
+      const path = error.config?.url || "";
+      console.error(`[Axios] Network error — no response from ${url}${path}`);
       return Promise.reject(new Error("Network error. Please check your connection."));
     }
+    console.error("[Axios] Request setup error:", error.message);
     return Promise.reject(error);
   }
 );

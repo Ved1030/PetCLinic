@@ -130,17 +130,28 @@ export default function ChatWidget() {
     setInput("");
     setIsLoading(true);
 
-    const currentHistory = messages.slice(-10);
-    const response = await sendChatMessage(message, currentHistory);
+    try {
+      const currentHistory = messages.slice(-10);
+      const response = await sendChatMessage(message, currentHistory);
 
-    const assistantMessage: ChatMessage = {
-      role: "assistant",
-      content: response,
-      timestamp: new Date().toISOString(),
-    };
+      const assistantMessage: ChatMessage = {
+        role: "assistant",
+        content: response,
+        timestamp: new Date().toISOString(),
+      };
 
-    setMessages((prev) => [...prev, assistantMessage]);
-    setIsLoading(false);
+      setMessages((prev) => [...prev, assistantMessage]);
+    } catch (err) {
+      console.error("[ChatWidget] Unexpected error in handleSend:", err);
+      const errorMessage: ChatMessage = {
+        role: "assistant",
+        content: "I'm sorry, something went wrong. Please try again or call us at +91 98204 65733.",
+        timestamp: new Date().toISOString(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   }, [messages, isLoading]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
