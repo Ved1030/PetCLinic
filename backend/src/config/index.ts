@@ -26,7 +26,7 @@ validateEnv();
 
 function parseCorsOrigins(): string[] {
   const raw = process.env.CORS_ORIGIN;
-  if (!raw) return ["http://localhost:3000", "https://petclinicghatkopar.vercel.app", "https://petclinicghatkopar.com"];
+  if (!raw) return ["http://localhost:3000", "https://petclinic-drekta.vercel.app", "https://www.petclinic-drekta.vercel.app", "https://petclinicghatkopar.vercel.app", "https://petclinicghatkopar.com"];
   return raw.split(",").map((s) => s.trim()).filter(Boolean);
 }
 

@@ -196,7 +196,7 @@ export default function Testimonials() {
             {/* Google Reviews Badge */}
             <motion.a
               variants={fadeInUp}
-              href={`https://search.google.com/local/reviews?placeid=YOUR_PLACE_ID`}
+              href={`https://search.google.com/local/reviews?placeid=REPLACE_WITH_GOOGLE_PLACE_ID`}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 inline-flex items-center gap-2.5 px-5 py-3.5 rounded-2xl bg-white border border-[#EFE7DD] hover:border-[#B98B5D]/60 hover:shadow-md transition-all duration-300 group self-center"

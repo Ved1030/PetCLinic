@@ -60,7 +60,26 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 // Logging
 app.use(morgan(config.isDev ? "dev" : "combined"));
 
+// Root route
+app.get("/", (_req, res) => {
+  res.json({
+    success: true,
+    message: "PetClinic API is running",
+    environment: config.nodeEnv,
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Health check
+app.get("/health", (_req, res) => {
+  res.json({
+    success: true,
+    message: "PetClinic API is running",
+    environment: config.nodeEnv,
+    timestamp: new Date().toISOString(),
+  });
+});
+
 app.get(`${config.apiPrefix}/health`, (_req, res) => {
   res.json({
     success: true,

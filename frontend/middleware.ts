@@ -12,9 +12,11 @@ export function middleware(request: NextRequest) {
     "Strict-Transport-Security",
     "max-age=31536000; includeSubDomains; preload"
   );
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://petclinic-80op.onrender.com";
+  const apiOrigin = new URL(apiUrl).origin;
   response.headers.set(
     "Content-Security-Policy",
-    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:;"
+    `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://*.google.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' ${apiOrigin};`
   );
 
   return response;
