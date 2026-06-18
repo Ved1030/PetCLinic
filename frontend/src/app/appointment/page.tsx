@@ -5,6 +5,8 @@ import { Calendar, Clock, Shield, Stethoscope } from "lucide-react";
 import AppointmentFlow from "@/components/forms/AppointmentFlow";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 
+
+
 const benefits = [
   { icon: Calendar, title: "Easy Scheduling", description: "Book your appointment online or by phone in minutes." },
   { icon: Clock, title: "Minimal Wait Times", description: "We respect your time and keep appointments on schedule." },

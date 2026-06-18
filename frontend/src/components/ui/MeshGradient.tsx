@@ -14,7 +14,6 @@ export default function MeshGradient({
   className,
   colors,
   animate = true,
-  intensity: _intensity = "medium",
 }: MeshGradientProps) {
   const defaultColors = [
     "rgba(185,139,93,0.06)",

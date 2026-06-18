@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Stethoscope, Microscope, ScanLine, Droplets, Activity, Scissors, Home, Shield, ArrowRight } from "lucide-react";
+import { Stethoscope, ScanLine, Droplets, Activity, Heart, Shield, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
+
+
 
 const services = [
   { icon: Stethoscope, title: "Veterinary Consultation", description: "Expert consultations and comprehensive health assessments by Dr. Ekta A. Thakkar for your beloved pets.", price: "Contact Us" },

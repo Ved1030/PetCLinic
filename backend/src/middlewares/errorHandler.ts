@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import { ApiError } from "../utils/ApiError";
 import { logger } from "../utils/logger";
 
+const isDev = (process.env.NODE_ENV || "development") === "development";
+
 export const errorHandler = (
   err: Error,
   _req: Request,
@@ -12,7 +14,8 @@ export const errorHandler = (
     res.status(err.statusCode).json({
       success: false,
       message: err.message,
-      ...(err.statusCode === 500 && { error: "Internal server error" }),
+      ...(err.statusCode === 500 && !isDev ? { error: "Internal server error" } : {}),
+      ...(isDev && err.statusCode === 500 ? { stack: err.stack } : {}),
     });
     return;
   }
@@ -27,8 +30,10 @@ export const errorHandler = (
   }
 
   logger.error("Unhandled error:", err);
+
   res.status(500).json({
     success: false,
-    message: "Internal server error",
+    message: isDev ? err.message : "Internal server error",
+    ...(isDev ? { stack: err.stack } : {}),
   });
 };

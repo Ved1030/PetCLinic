@@ -2,6 +2,28 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+function validateEnv(): void {
+  const requiredVars: string[] = [];
+
+  if (process.env.NODE_ENV === "production") {
+    requiredVars.push(
+      "SARVAM_API_KEY",
+      "EMAIL_HOST",
+      "EMAIL_USER",
+      "EMAIL_PASS"
+    );
+  }
+
+  const missing = requiredVars.filter((v) => !process.env[v]);
+  if (missing.length > 0) {
+    console.warn(
+      `[CONFIG] Missing required environment variables in production: ${missing.join(", ")}`
+    );
+  }
+}
+
+validateEnv();
+
 function parseCorsOrigins(): string[] {
   const raw = process.env.CORS_ORIGIN;
   if (!raw) return ["http://localhost:3000", "https://petclinicghatkopar.vercel.app", "https://petclinicghatkopar.com"];

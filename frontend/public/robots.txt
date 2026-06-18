@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Sitemap: https://theozonevets.com/sitemap.xml
+Sitemap: https://petclinicghatkopar.com/sitemap.xml

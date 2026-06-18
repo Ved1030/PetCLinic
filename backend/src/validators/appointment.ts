@@ -43,8 +43,23 @@ export const updateAppointmentStatusSchema = z.object({
   status: z.enum(["available", "booked", "cancelled", "completed", "no_show"]),
 });
 
+export const updateAppointmentSchema = z.object({
+  petName: z.string().min(1).max(100).optional(),
+  petType: z.string().min(1).max(50).optional(),
+  breed: z.string().min(1).max(100).optional(),
+  ownerName: z.string().min(1).max(100).optional(),
+  email: z.string().email().optional(),
+  phone: z.string().min(10).optional(),
+  service: z.string().min(1).optional(),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  time: z.string().regex(/^\d{2}:\d{2}$/).optional(),
+  reason: z.string().max(1000).optional(),
+  status: z.enum(["available", "booked", "cancelled", "completed", "no_show"]).optional(),
+});
+
 export type CreateAppointmentInput = z.infer<typeof createAppointmentSchema>;
 export type CreateBookingInput = z.infer<typeof createBookingSchema>;
 export type ContactMessageInput = z.infer<typeof contactMessageSchema>;
 export type NewsletterInput = z.infer<typeof newsletterSchema>;
 export type UpdateAppointmentStatusInput = z.infer<typeof updateAppointmentStatusSchema>;
+export type UpdateAppointmentInput = z.infer<typeof updateAppointmentSchema>;

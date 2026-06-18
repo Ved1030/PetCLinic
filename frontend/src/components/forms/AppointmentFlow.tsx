@@ -7,7 +7,7 @@ import { format, addDays } from "date-fns";
 import {
   ChevronLeft, ChevronRight, Calendar, Clock, Stethoscope,
   PawPrint, Loader2, CheckCircle2, MessageCircle, Send,
-  Syringe, Scissors, Activity, Zap, Bone,
+  Syringe, Activity, Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
