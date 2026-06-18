@@ -53,8 +53,7 @@ export default function Hero() {
 
           {/* Heading */}
           <h1 className="font-display font-bold text-[#4A3A2A] dark:text-white leading-[1.05] tracking-[-0.02em] mb-5 sm:mb-6 text-[clamp(2.25rem,5vw,4.25rem)]">
-            <span className="text-[#C4956A]">Advanced</span>{" "}
-            Veterinary Care
+            <span className="text-[#C4956A]">Advanced</span> Veterinary Care
             <br />
             For Your Beloved Pets
           </h1>
