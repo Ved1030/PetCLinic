@@ -15,6 +15,9 @@ import { logger } from "./utils/logger";
 
 const app = express();
 
+// Trust proxy — required when behind Render's load balancer
+app.set("trust proxy", 1);
+
 // Security middleware
 app.use(
   helmet({
