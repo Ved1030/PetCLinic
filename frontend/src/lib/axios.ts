@@ -1,6 +1,27 @@
 import axios from "axios";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || (typeof window !== "undefined" ? window.location.origin + "/api" : "/api");
+function buildBaseUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_API_URL || "";
+  const fallback = typeof window !== "undefined" ? window.location.origin : "";
+
+  // Use env var if set, otherwise fallback to origin
+  let url = raw || fallback;
+
+  // Strip trailing slash
+  url = url.replace(/\/+$/, "");
+
+  // Ensure /api prefix is present (backend routes are mounted under /api)
+  // Check if URL path already contains /api segment
+  const hasApiPrefix = /\/api(\/|$)/.test(url);
+  if (!hasApiPrefix) {
+    url += "/api";
+  }
+
+  console.log("[Axios] API_BASE_URL =", url, "(raw env:", raw || "(not set)", "| origin:", fallback || "(ssr)");
+  return url;
+}
+
+const API_BASE_URL = buildBaseUrl();
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
