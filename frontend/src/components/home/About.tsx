@@ -7,18 +7,18 @@ import { Shield, Heart, Stethoscope, Scissors, Home, Users, Award, Star } from "
 import { fadeInUp, fadeInLeft, staggerContainer } from "@/lib/animations";
 
 const stats = [
-  { icon: Star, value: "178+", label: "Google Reviews" },
-  { icon: Award, value: "4.5★", label: "Clinic Rating" },
+  { icon: Star, value: "4.1★", label: "Google Rating" },
+  { icon: Award, value: "142+", label: "Patient Reviews" },
   { icon: Heart, value: "1000+", label: "Happy Pets" },
-  { icon: Shield, value: "Advanced", label: "Pet Healthcare" },
+  { icon: Shield, value: "Trusted", label: "Veterinary Care" },
 ];
 
 const highlights = [
-  { icon: Stethoscope, text: "Advanced Diagnostics" },
-  { icon: Shield, text: "Ozone Therapy" },
-  { icon: Scissors, text: "Pet Grooming" },
-  { icon: Home, text: "Pet Boarding" },
-  { icon: Heart, text: "Compassionate Care" },
+  { icon: Stethoscope, text: "Veterinary Consultation" },
+  { icon: Shield, text: "Vaccination" },
+  { icon: Heart, text: "Kidney Care" },
+  { icon: Home, text: "Dialysis Support" },
+  { icon: Scissors, text: "Pet Diagnostics" },
   { icon: Users, text: "Experienced Veterinary Team" },
 ];
 
@@ -44,7 +44,7 @@ export default function About() {
               <div className="relative aspect-[4/5] w-full">
                 <Image
                   src="https://images.pexels.com/photos/6235231/pexels-photo-6235231.jpeg"
-                  alt="Dr. Komal and team providing advanced veterinary care at THE OZONE VETS"
+                  alt="Dr. Ekta A. Thakkar and team providing veterinary care at Pet Clinic Ghatkopar"
                   fill
                   className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -75,16 +75,16 @@ export default function About() {
           >
             <motion.div variants={fadeInUp}>
               <span className="inline-flex px-5 py-2 rounded-full bg-white border border-[#EFE7DD] text-[#B98B5D] text-sm font-semibold tracking-wide mb-5">
-                About THE OZONE VETS
+                About Pet Clinic, Ghatkopar
               </span>
             </motion.div>
 
             <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl font-display font-bold tracking-[-0.02em] text-[#4A3A2A] mb-5 leading-[1.1]">
-              Advanced Veterinary Care With Compassion
+              Compassionate Veterinary Care For Your Beloved Pets
             </motion.h2>
 
             <motion.p variants={fadeInUp} className="text-base lg:text-lg text-[#7B6A58] leading-relaxed mb-8 max-w-xl">
-              THE OZONE VETS is a modern veterinary clinic in Andheri West led by Dr. Komal. We combine advanced diagnostics, specialized therapies, preventive healthcare, and compassionate treatment to provide exceptional care for pets and peace of mind for their families.
+              Pet Clinic Ghatkopar, led by Dr. Ekta A. Thakkar, is dedicated to providing high-quality veterinary care with a focus on diagnosis, treatment, preventive medicine, kidney care, and compassionate support for pets and their families.
             </motion.p>
 
             {/* Statistics */}

@@ -6,10 +6,10 @@ import { Heart, Award, Stethoscope, Star } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 const stats = [
-  { icon: Award, value: "178+", label: "Google Reviews" },
-  { icon: Star, value: "4.5★", label: "Clinic Rating" },
+  { icon: Star, value: "4.1★", label: "Google Rating" },
+  { icon: Award, value: "142+", label: "Patient Reviews" },
   { icon: Heart, value: "1000+", label: "Happy Pets" },
-  { icon: Stethoscope, value: "Advanced", label: "Veterinary Care" },
+  { icon: Stethoscope, value: "Trusted", label: "Veterinary Care" },
 ];
 
 export default function Stats() {

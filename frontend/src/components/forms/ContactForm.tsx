@@ -93,7 +93,7 @@ export default function ContactForm() {
           <Input
             id="phone"
             type="tel"
-            placeholder="+91 98204 45010"
+            placeholder="+91 98204 65733"
             {...register("phone")}
             className={`border-[#EFE7DD] focus:border-[#B98B5D] focus:ring-[#B98B5D]/20 rounded-xl ${errors.phone ? "border-red-500" : ""}`}
           />

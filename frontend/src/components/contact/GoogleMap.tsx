@@ -6,18 +6,18 @@ import { fadeInUp } from "@/lib/animations";
 import { Button } from "@/components/ui/button";
 
 const CLINIC_ADDRESS = {
-  line1: "C3 SARANGA, Lokhandwala Complex Market",
-  line2: "BUNGLOW, 3rd Cross Rd, Opp. Cliff Tower",
-  line3: "Swami Samarth Nagar, Lokhandwala Complex",
-  line4: "Andheri West, Mumbai 400053",
+  line1: "Shop No. 4 & 5, Indrayani CHS",
+  line2: "General Arun Kumar Vaidya Udyan",
+  line3: "Shri Dattaguru Mandir Marg, Opp. ARUN",
+  line4: "Pant Nagar, Ghatkopar East, Mumbai 400077",
 };
 
 const FULL_ADDRESS = [
-  "C3 SARANGA, Lokhandwala Complex Market",
-  "BUNGLOW, 3rd Cross Rd, Opp. Cliff Tower",
-  "Swami Samarth Nagar, Lokhandwala Complex",
-  "Andheri West, Mumbai",
-  "Maharashtra 400053",
+  "Shop No. 4 & 5, Indrayani CHS",
+  "General Arun Kumar Vaidya Udyan",
+  "Shri Dattaguru Mandir Marg, Opp. ARUN",
+  "Pant Nagar, Ghatkopar East, Mumbai",
+  "Maharashtra 400077",
 ].join(", ");
 
 const MAPS_URL = `https://maps.google.com/?q=${encodeURIComponent(FULL_ADDRESS)}`;
@@ -46,10 +46,10 @@ export default function GoogleMap() {
           </div>
           <div>
             <h3 className="text-lg font-display font-bold text-[#4A3A2A]">
-              THE OZONE VETS
+              Pet Clinic, Ghatkopar
             </h3>
             <p className="text-xs text-[#7B6A58] font-medium tracking-wide uppercase mt-0.5">
-              Premium Veterinary Clinic
+              Veterinary Clinic
             </p>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function GoogleMap() {
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-[#FAF7F2] border border-[#EFE7DD] flex-1">
             <Phone className="w-4 h-4 text-[#B98B5D] shrink-0" />
-            <span className="text-sm text-[#4A3A2A] font-medium">+91 98204 45010</span>
+            <span className="text-sm text-[#4A3A2A] font-medium">+91 98204 65733</span>
           </div>
           <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-[#FAF7F2] border border-[#EFE7DD] flex-1">
             <Clock className="w-4 h-4 text-[#B98B5D] shrink-0" />

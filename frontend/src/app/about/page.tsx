@@ -11,27 +11,27 @@ const values = [
   {
     icon: Heart,
     title: "Compassionate Care",
-    description: "Every pet receives gentle, loving attention and advanced medical treatment with genuine compassion.",
+    description: "Every pet receives gentle, loving attention and dedicated medical treatment with genuine compassion.",
   },
   {
     icon: Shield,
-    title: "Advanced Diagnostics",
-    description: "State-of-the-art diagnostic equipment including digital X-rays, blood testing, and ozone therapy.",
+    title: "Kidney Care",
+    description: "Specialized kidney care services including diagnosis, treatment, and dialysis support for pets with renal conditions.",
   },
   {
     icon: Award,
     title: "Expert Experience",
-    description: "Dr. Komal brings years of dedicated veterinary practice and specialized training to every consultation.",
+    description: "Dr. Ekta A. Thakkar brings years of dedicated veterinary practice and specialized training to every consultation.",
   },
   {
     icon: Users,
     title: "Patient-Centered",
-    description: "We treat every pet and their family with respect, transparency, and premium quality care.",
+    description: "We treat every pet and their family with respect, transparency, and quality care.",
   },
 ];
 
 const teamMembers = [
-  { name: "Dr. Komal", role: "Veterinary Physician", description: "Experienced veterinary physician dedicated to providing compassionate and advanced care for pets, specializing in ozone therapy, acupuncture, and comprehensive veterinary medicine." },
+  { name: "Dr. Ekta A. Thakkar", role: "Veterinary Physician", description: "Experienced Veterinary Physician dedicated to providing compassionate, evidence-based care and advanced treatment solutions for pets." },
 ];
 
 export default function AboutPage() {
@@ -51,13 +51,13 @@ export default function AboutPage() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-[-0.03em] text-[#4A3A2A] mb-6 leading-[1.1]">
               About{" "}
               <span className="text-gradient-accent">
-                THE OZONE VETS
+                Pet Clinic, Ghatkopar
               </span>
             </h1>
             <p className="text-lg text-[#7B6A58] leading-relaxed max-w-2xl mx-auto">
-              THE OZONE VETS is a premium veterinary practice led by Dr. Komal.
-              We specialize in advanced diagnostics, ozone therapy, acupuncture, pet grooming,
-              boarding, and compassionate veterinary care for pets across Mumbai.
+              Pet Clinic Ghatkopar, led by Dr. Ekta A. Thakkar, is dedicated to providing high-quality veterinary care
+              with a focus on diagnosis, treatment, preventive medicine, kidney care, and compassionate support
+              for pets and their families.
             </p>
           </motion.div>
         </div>
@@ -121,7 +121,7 @@ export default function AboutPage() {
                   <div className="relative w-full max-w-[400px] mx-auto aspect-[3/4] bg-[#F5EFE5]">
                     <Image
                       src="https://images.pexels.com/photos/6235664/pexels-photo-6235664.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&dpr=2"
-                      alt="Professional veterinarian Dr. Komal"
+                      alt="Professional veterinarian Dr. Ekta A. Thakkar"
                       fill
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 768px) 100vw, 400px"
@@ -153,7 +153,7 @@ export default function AboutPage() {
               Schedule a Visit
             </h2>
             <p className="text-lg text-[#7B6A58] mb-8 max-w-2xl mx-auto">
-              Experience THE OZONE VETS difference. Book an appointment with Dr. Komal today.
+              Experience Pet Clinic Ghatkopar difference. Book an appointment with Dr. Ekta A. Thakkar today.
             </p>
             <Link href="/appointment">
               <Button variant="gradient" size="xl" className="rounded-2xl">

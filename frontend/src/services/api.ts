@@ -99,7 +99,7 @@ export const sendChatMessage = async (
     });
     return data?.data?.message ?? "I'm sorry, I couldn't process that request. Please try again.";
   } catch {
-    return "I'm having trouble connecting right now. Please try again or call us at +91 98204 45010.";
+    return "I'm having trouble connecting right now. Please try again or call us at +91 98204 65733.";
   }
 };
 

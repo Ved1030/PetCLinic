@@ -29,13 +29,13 @@ type AppointmentFormData = z.infer<typeof appointmentSchema>;
 
 const services = [
   "Veterinary Consultation",
-  "Blood Testing",
-  "Digital X-Rays",
-  "Ozone Therapy",
-  "Acupuncture",
-  "Pet Grooming",
-  "Pet Boarding",
-  "Preventive Healthcare",
+  "Vaccination & Preventive Care",
+  "Pet Diagnostics",
+  "Kidney Care",
+  "Dialysis Support",
+  "Pet Health Checkups",
+  "Medical Treatment",
+  "Emergency Guidance",
 ];
 
 export default function AppointmentForm() {
@@ -133,7 +133,7 @@ export default function AppointmentForm() {
           <Input
             id="phone"
             type="tel"
-            placeholder="+91 98204 45010"
+            placeholder="+91 98204 65733"
             {...register("phone")}
             className={`border-[#EFE7DD] focus:border-[#B98B5D] focus:ring-[#B98B5D]/20 rounded-xl ${errors.phone ? "border-red-500" : ""}`}
           />

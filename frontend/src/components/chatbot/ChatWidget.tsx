@@ -9,15 +9,15 @@ import type { ChatMessage } from "@/types";
 import { useRouter } from "next/navigation";
 
 const QUICK_ACTIONS = [
-  { label: "\uD83D\uDCC5 Book an Appointment", message: "I'd like to book an appointment with Dr. Komal" },
+  { label: "\uD83D\uDCC5 Book an Appointment", message: "I'd like to book an appointment with Dr. Ekta A. Thakkar" },
   { label: "\uD83D\uDD52 Clinic Timings", message: "What are your clinic timings?" },
   { label: "\uD83D\uDCCD Clinic Location", message: "Where is the clinic located?" },
   { label: "\uD83D\uDC89 Vaccination Schedule", message: "I need vaccination for my pet" },
   { label: "\uD83D\uDC36 Puppy Health Check", message: "I need a puppy health checkup" },
   { label: "\uD83D\uDC31 Cat Health Consultation", message: "I need a cat health consultation" },
   { label: "\uD83D\uDE91 Emergency Pet Care", message: "I need emergency pet care" },
-  { label: "\u2702\uFE0F Pet Grooming Services", message: "Do you offer pet grooming services?" },
-  { label: "\uD83C\uDFE5 Ozone Therapy Info", message: "Tell me about ozone therapy" },
+  { label: "\uD83C\uDFE5 Kidney Care Info", message: "Tell me about kidney care" },
+  { label: "\u2695\uFE0F Dialysis Support Info", message: "Tell me about dialysis support" },
   { label: "\uD83D\uDCDE Speak to Our Team", message: "I'd like to speak to someone on the team" },
 ];
 
@@ -86,7 +86,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
-      content: "🩺 Welcome to THE OZONE VETS! I'm your veterinary care assistant. I can help with pet health concerns, clinic information, or booking an appointment with Dr. Komal. How can I help you today?",
+      content: "🩺 Welcome to Pet Clinic, Ghatkopar! I'm your veterinary care assistant. I can help with pet health concerns, clinic information, or booking an appointment with Dr. Ekta A. Thakkar. How can I help you today?",
       timestamp: new Date().toISOString(),
     },
   ]);
@@ -176,7 +176,7 @@ export default function ChatWidget() {
                   <PawPrint className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <p className="text-white text-sm font-semibold">THE OZONE VETS</p>
+                  <p className="text-white text-sm font-semibold">Pet Clinic, Ghatkopar</p>
                   <p className="text-white/60 text-xs">Veterinary Assistant</p>
                 </div>
               </div>

@@ -8,8 +8,8 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 const benefits = [
   { icon: Calendar, title: "Easy Scheduling", description: "Book your appointment online or by phone in minutes." },
   { icon: Clock, title: "Minimal Wait Times", description: "We respect your time and keep appointments on schedule." },
-  { icon: Shield, title: "Expert Care", description: "Dr. Komal provides compassionate, advanced veterinary care." },
-  { icon: Stethoscope, title: "Premium Facility", description: "State-of-the-art equipment in a luxurious environment." },
+  { icon: Shield, title: "Expert Care", description: "Dr. Ekta A. Thakkar provides compassionate veterinary care." },
+  { icon: Stethoscope, title: "Quality Facility", description: "Modern equipment and dedicated care for your pets." },
 ];
 
 export default function AppointmentPage() {
@@ -29,7 +29,7 @@ export default function AppointmentPage() {
             </h1>
             <p className="text-lg text-[#7B6A58] max-w-2xl mx-auto leading-relaxed">
               Ready to give your pet the premium care they deserve? Fill out the form below or call us
-              at +91 98204 45010 to book an appointment.
+              at +91 98204 65733 to book an appointment.
             </p>
           </motion.div>
         </div>
@@ -49,7 +49,7 @@ export default function AppointmentPage() {
             <div>
               <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-3">
                 <motion.div variants={fadeInUp}>
-                  <h3 className="text-lg font-display font-semibold text-[#4A3A2A] mb-4">Why Choose THE OZONE VETS?</h3>
+                  <h3 className="text-lg font-display font-semibold text-[#4A3A2A] mb-4">Why Choose Pet Clinic, Ghatkopar?</h3>
                 </motion.div>
                 {benefits.map((benefit) => {
                   const Icon = benefit.icon;

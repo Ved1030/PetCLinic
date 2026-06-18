@@ -7,7 +7,7 @@ import GoogleMap from "@/components/contact/GoogleMap";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { CONTACT_INFO } from "@/lib/constants";
 
-const DIRECTIONS_URL = "https://www.google.com/maps/search/?api=1&query=C3+SARANGA+Lokhandwala+Complex+Market+BUNGLOW+3rd+Cross+Rd+opp.+Cliff+Tower+Andheri+West+Mumbai+400053";
+const DIRECTIONS_URL = "https://www.google.com/maps/search/?api=1&query=Shop+No.+4+%26+5+Indrayani+CHS+General+Arun+Kumar+Vaidya+Udyan+Shri+Dattaguru+Mandir+Marg+Opp.+ARUN+Pant+Nagar+Ghatkopar+East+Mumbai+400077";
 
 const contactDetails = [
   {
@@ -15,15 +15,14 @@ const contactDetails = [
     label: "Address",
     value: (
       <div className="text-sm leading-relaxed">
-        <p className="font-semibold text-[#4A3A2A]">C3 SARANGA, Lokhandwala Complex Market</p>
-        <p className="text-[#7B6A58]">Bungalow, 3rd Cross Rd, Opp. Cliff Tower</p>
-        <p className="text-[#7B6A58]">Swami Samarth Nagar, Lokhandwala Complex</p>
-        <p className="text-[#7B6A58]">Andheri West, Mumbai 400053</p>
+        <p className="font-semibold text-[#4A3A2A]">Shop No. 4 & 5, Indrayani CHS</p>
+        <p className="text-[#7B6A58]">General Arun Kumar Vaidya Udyan</p>
+        <p className="text-[#7B6A58]">Shri Dattaguru Mandir Marg, Opp. ARUN</p>
+        <p className="text-[#7B6A58]">Pant Nagar, Ghatkopar East, Mumbai 400077</p>
       </div>
     ),
   },
   { icon: Phone, label: "Phone", value: CONTACT_INFO.phone, href: `tel:${CONTACT_INFO.phone}` },
-  { icon: Mail, label: "Email", value: CONTACT_INFO.email, href: `mailto:${CONTACT_INFO.email}` },
   {
     icon: Clock,
     label: "Hours",
@@ -67,7 +66,7 @@ export default function ContactPage() {
               <div>
                 <motion.div variants={fadeInUp}>
                   <h2 className="text-2xl font-display font-bold text-[#4A3A2A] mb-2">Contact Information</h2>
-                  <p className="text-[#7B6A58]">THE OZONE VETS — Reach out to us through any of these channels.</p>
+                  <p className="text-[#7B6A58]">Pet Clinic, Ghatkopar — Reach out to us through any of these channels.</p>
                 </motion.div>
 
                 <div className="space-y-3 mt-6">

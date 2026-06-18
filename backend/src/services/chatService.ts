@@ -6,26 +6,25 @@ import { logger } from "../utils/logger";
 // System prompt for the AI (LLM) path
 // ──────────────────────────────────────
 
-const CLINIC_CONTEXT = `You are a compassionate and professional veterinary assistant for THE OZONE VETS clinic in Mumbai. Your role is to help pet owners with their concerns, provide general pet care guidance, and facilitate appointment booking.
+const CLINIC_CONTEXT = `You are a compassionate and professional veterinary assistant for Pet Clinic, Ghatkopar in Mumbai. Your role is to help pet owners with their concerns, provide general pet care guidance, and facilitate appointment booking.
 
 CLINIC INFORMATION:
-- Name: THE OZONE VETS
-- Veterinarian: Dr. Komal
-- Address: C3 SARANGA, Lokhandwala Complex Market, Bungalow, 3rd Cross Road, Opp. Cliff Tower, Andheri West, Mumbai 400053
-- Phone: +91 98204 45010
-- Email: hello@theozonevets.com
+- Name: Pet Clinic, Ghatkopar
+- Veterinarian: Dr. Ekta A. Thakkar
+- Address: Shop No. 4 & 5, Indrayani CHS, General Arun Kumar Vaidya Udyan, Shri Dattaguru Mandir Marg, Opp. ARUN, Pant Nagar, Ghatkopar East, Mumbai, Maharashtra 400077
+- Phone: +91 98204 65733
+- Email: info@petclinicghatkopar.com
 - Hours: Mon - Sat: 10:00 AM - 8:00 PM, Sunday: Closed
 
 SERVICES OFFERED:
 1. Veterinary Consultation - General health checkups, diagnosis, treatment
-2. Vaccination - Core and optional vaccines for dogs and cats
-3. Pet Grooming - Professional grooming, bathing, nail trimming, ear cleaning, de-shedding, hygiene grooming, tick & flea care
-4. Blood Testing - Comprehensive blood panels, organ function tests
-5. Digital X-Rays - Advanced diagnostic imaging
-6. Ozone Therapy - Ozone treatment for various conditions
-7. Acupuncture - Traditional Chinese veterinary acupuncture
-8. Pet Boarding - Safe, comfortable boarding facility
-9. Emergency Consultation - Urgent care for pets
+2. Vaccination & Preventive Care - Core and optional vaccines for dogs and cats
+3. Pet Diagnostics - Advanced diagnostic tests and health assessment
+4. Kidney Care - Specialized kidney care and treatment
+5. Dialysis Support - Advanced dialysis support for kidney conditions
+6. Pet Health Checkups - Comprehensive wellness examinations
+7. Medical Treatment - Expert treatment for various conditions
+8. Emergency Guidance - Urgent guidance and support for pet emergencies
 
 YOUR PERSONALITY:
 - Compassionate: Always acknowledge the pet owner's concern and show genuine empathy
@@ -56,37 +55,32 @@ CONTEXT MEMORY - CRITICAL:
 SERVICE-SPECIFIC RESPONSES:
 When asked about a SPECIFIC service, provide DETAILED information about that service, not a generic list. Use the detailed info below:
 
-Pet Grooming:
-"We offer professional grooming services to keep your pet healthy, comfortable, and looking their best.
-Services include: Bathing & Coat Cleaning, Hair Trimming & Styling, Nail Trimming, Ear Cleaning, Coat Brushing & De-shedding, Hygiene Grooming, Tick & Flea Care.
-Suitable for dogs and cats."
-
-Vaccination:
-"We offer comprehensive vaccination services for dogs and cats including: Core vaccines (rabies, distemper, parvovirus, etc.) and optional vaccines based on lifestyle. Dr. Komal will recommend the best vaccination schedule based on your pet's age, lifestyle, and health status."
-
 Veterinary Consultation:
-"Our veterinary consultation service includes thorough physical examinations, health assessment, diagnosis and treatment planning, nutritional counseling, and preventive care advice. Dr. Komal provides compassionate, expert care for all pets."
+"Our veterinary consultation service includes thorough physical examinations, health assessment, diagnosis and treatment planning, nutritional counseling, and preventive care advice. Dr. Ekta A. Thakkar provides compassionate, expert care for all pets."
 
-Blood Testing:
-"We offer comprehensive blood testing services including complete blood counts, biochemistry panels, organ function tests, thyroid testing, and more. Results are typically available quickly for prompt diagnosis."
+Vaccination & Preventive Care:
+"We offer comprehensive vaccination services for dogs and cats including: Core vaccines (rabies, distemper, parvovirus, etc.) and optional vaccines based on lifestyle. Dr. Ekta A. Thakkar will recommend the best vaccination schedule based on your pet's age, lifestyle, and health status."
 
-Digital X-Rays:
-"We have advanced digital X-ray facilities for rapid, high-quality diagnostic imaging with minimal radiation exposure. Ideal for evaluating bones, joints, chest, abdomen, and dental issues."
+Pet Diagnostics:
+"We offer comprehensive diagnostic services including blood tests, urinalysis, health screening, and more. Results are typically available quickly for prompt diagnosis."
 
-Ozone Therapy:
-"Ozone therapy is one of our specialized treatments! It uses medical-grade ozone to improve oxygen utilization, boost the immune system, and treat various conditions. Dr. Komal has extensive experience in ozone therapy."
+Kidney Care:
+"Kidney care is one of our specialized services! We provide comprehensive kidney function assessment, treatment planning and management, dietary guidance, and regular monitoring. Dr. Ekta A. Thakkar has extensive experience in kidney care management."
 
-Acupuncture:
-"Yes, we offer veterinary acupuncture! This traditional Chinese medicine technique can help with: Pain management, Arthritis, Neurological conditions, and overall wellness. Dr. Komal is trained in veterinary acupuncture."
+Dialysis Support:
+"Yes, we offer dialysis support for pets! This advanced treatment helps pets with kidney conditions requiring specialized care including dialysis treatment sessions, kidney function support, specialized monitoring, and follow-up care."
 
-Pet Boarding:
-"We offer safe, comfortable pet boarding services! Our facility provides: Clean and comfortable accommodation, proper feeding and medication schedule, regular exercise and attention, and 24/7 supervision."
+Pet Health Checkups:
+"We offer comprehensive health checkups including physical examination, weight and vital signs check, health assessment, and wellness advice."
 
-Emergency Consultation:
-"If you have a pet emergency, please call us immediately at +91 98204 45010. For life-threatening emergencies, please visit the nearest emergency veterinary hospital. Do not wait if your pet is in distress."
+Medical Treatment:
+"We offer expert medical treatment for various pet health conditions and illnesses including accurate diagnosis, customized treatment planning, medication and therapy, and regular follow-up care."
+
+Emergency Guidance:
+"If you have a pet emergency, please call us immediately at +91 98204 65733. For life-threatening emergencies, please visit the nearest emergency veterinary hospital. Do not wait if your pet is in distress."
 
 BOOKING CTA:
-After providing service information, ALWAYS ask if they'd like to book and include [Book Appointment] on its own line. Also include 📞 Call Clinic +91 98204 45010 as an alternative.
+After providing service information, ALWAYS ask if they'd like to book and include [Book Appointment] on its own line. Also include 📞 Call Clinic +91 98204 65733 as an alternative.
 
 CRITICAL SAFETY RULES - YOU MUST NEVER:
 - Diagnose a specific disease or condition
@@ -139,79 +133,71 @@ interface ServiceEntry {
 
 const SERVICES: ServiceEntry[] = [
   {
-    name: "grooming",
-    keywords: ["groom", "bath", "nail trim", "haircut", "styling", "de-shed", "de-shedding", "coat brush", "hygiene groom"],
-    aliases: ["pet grooming", "grooming services", "dog grooming", "cat grooming"],
-  },
-  {
-    name: "vaccination",
-    keywords: ["vaccin", "shot", "rabies", "distemper", "parvovirus", "vaccination schedule", "vaccinate"],
-    aliases: ["vaccination", "vaccines", "shots"],
-  },
-  {
-    name: "boarding",
-    keywords: ["board", "daycare", "stay", "kennel", "overnight", "pet hotel"],
-    aliases: ["pet boarding", "boarding facility", "boarding services"],
-  },
-  {
     name: "consultation",
     keywords: ["consult", "checkup", "check-up", "health check", "general check", "physical exam", "wellness exam"],
     aliases: ["consultation", "veterinary consultation", "health checkup"],
   },
   {
-    name: "bloodTest",
-    keywords: ["blood", "test", "lab", "blood work", "blood panel", "blood test", "biochemistry", "cbc"],
-    aliases: ["blood testing", "blood test", "lab test"],
+    name: "vaccination",
+    keywords: ["vaccin", "shot", "rabies", "distemper", "parvovirus", "vaccination schedule", "vaccinate"],
+    aliases: ["vaccination", "vaccines", "shots", "preventive care"],
   },
   {
-    name: "xray",
-    keywords: ["x-ray", "xray", "radiograph", "imaging", "digital x-ray", "x ray"],
-    aliases: ["digital x-ray", "x-ray", "radiology"],
+    name: "diagnostics",
+    keywords: ["diagnostic", "test", "lab", "blood work", "blood panel", "blood test", "biochemistry", "screening"],
+    aliases: ["pet diagnostics", "diagnostic tests", "lab test", "health screening"],
   },
   {
-    name: "ozoneTherapy",
-    keywords: ["ozone", "ozone therapy"],
-    aliases: ["ozone therapy", "ozone treatment"],
+    name: "kidneyCare",
+    keywords: ["kidney", "renal", "kidney care", "kidney disease", "kidney treatment"],
+    aliases: ["kidney care", "renal care", "kidney treatment"],
   },
   {
-    name: "acupuncture",
-    keywords: ["acupunct", "acupuncture"],
-    aliases: ["acupuncture", "acupuncture therapy"],
+    name: "dialysis",
+    keywords: ["dialysis", "dialysis support", "kidney dialysis"],
+    aliases: ["dialysis", "dialysis support", "dialysis treatment"],
+  },
+  {
+    name: "checkups",
+    keywords: ["checkup", "check-up", "health check", "wellness", "wellness exam"],
+    aliases: ["pet health checkups", "health checkup", "wellness check"],
+  },
+  {
+    name: "treatment",
+    keywords: ["treatment", "medical treatment", "medication", "therapy"],
+    aliases: ["medical treatment", "treatment services", "pet treatment"],
   },
   {
     name: "emergency",
-    keywords: ["emergency", "urgent", "emergency care"],
-    aliases: ["emergency", "emergency consultation"],
+    keywords: ["emergency", "urgent", "emergency care", "emergency guidance"],
+    aliases: ["emergency", "emergency guidance", "urgent care"],
   },
 ];
 
 const SERVICE_RESPONSES: Record<string, (petType?: string) => string> = {
-  grooming: () =>
-    "🐾 Pet Grooming Services at THE OZONE VETS\n\nWe offer professional grooming services to keep your pet healthy, comfortable, and looking their best.\n\nServices include:\n• Bathing & Coat Cleaning\n• Hair Trimming & Styling\n• Nail Trimming\n• Ear Cleaning\n• Coat Brushing & De-shedding\n• Hygiene Grooming\n• Tick & Flea Care\n\nSuitable for:\n🐶 Dogs\n🐱 Cats\n\nTo check availability or schedule a grooming session:\n\n[Book Appointment]\n📞 Call us at +91 98204 45010",
+  consultation: () =>
+    "🩺 Veterinary Consultation at Pet Clinic, Ghatkopar\n\nOur comprehensive consultation service ensures your pet receives the best possible care.\n\nWhat's included:\n• Thorough physical examination\n• Health assessment and diagnosis\n• Treatment planning\n• Nutritional counseling\n• Preventive care advice\n• Parasite prevention guidance\n\nDr. Ekta A. Thakkar provides compassionate, expert care for all pets.\n\nTo book a consultation:\n\n[Book Appointment]\n📞 Call us at +91 98204 65733",
 
   vaccination: () =>
-    "💉 Vaccination Services at THE OZONE VETS\n\nWe offer comprehensive vaccination services to protect your pet from preventable diseases.\n\nVaccines available:\n• Core Vaccines: Rabies, Distemper, Parvovirus, Adenovirus\n• Optional Vaccines: Based on your pet's lifestyle and risk factors\n\nDr. Komal will recommend the best vaccination schedule based on your pet's age, health, and lifestyle.\n\nTo schedule a vaccination:\n\n[Book Appointment]\n📞 Call us at +91 98204 45010",
+    "💉 Vaccination & Preventive Care at Pet Clinic, Ghatkopar\n\nWe offer comprehensive vaccination services to protect your pet from preventable diseases.\n\nVaccines available:\n• Core Vaccines: Rabies, Distemper, Parvovirus, Adenovirus\n• Optional Vaccines: Based on your pet's lifestyle and risk factors\n\nDr. Ekta A. Thakkar will recommend the best vaccination schedule based on your pet's age, health, and lifestyle.\n\nTo schedule a vaccination:\n\n[Book Appointment]\n📞 Call us at +91 98204 65733",
 
-  boarding: () =>
-    "🏠 Pet Boarding Services at THE OZONE VETS\n\nWe offer safe and comfortable boarding facilities for your pet while you're away.\n\nOur boarding includes:\n• Clean and comfortable accommodation\n• Proper feeding schedule\n• Regular exercise and playtime\n• Medication administration if needed\n• 24/7 supervision\n• Regular updates for pet parents\n\nContact us for availability and pricing:\n\n[Book Appointment]\n📞 Call us at +91 98204 45010",
+  diagnostics: () =>
+    "🔬 Pet Diagnostics at Pet Clinic, Ghatkopar\n\nWe offer advanced diagnostic services for accurate health assessment and early detection of conditions.\n\nTests available:\n• Blood Tests\n• Urinalysis\n• Health Screening\n• Organ Function Tests\n\nResults are typically available quickly for prompt diagnosis and treatment.\n\nTo book a diagnostic test:\n\n[Book Appointment]\n📞 Call us at +91 98204 65733",
 
-  consultation: () =>
-    "🩺 Veterinary Consultation at THE OZONE VETS\n\nOur comprehensive consultation service ensures your pet receives the best possible care.\n\nWhat's included:\n• Thorough physical examination\n• Health assessment and diagnosis\n• Treatment planning\n• Nutritional counseling\n• Preventive care advice\n• Parasite prevention guidance\n\nDr. Komal provides compassionate, expert care for all pets.\n\nTo book a consultation:\n\n[Book Appointment]\n📞 Call us at +91 98204 45010",
+  kidneyCare: () =>
+    "💚 Kidney Care at Pet Clinic, Ghatkopar\n\nWe offer specialized kidney care services for pets with renal conditions.\n\nServices include:\n• Kidney function assessment\n• Treatment planning and management\n• Dietary guidance\n• Regular monitoring\n• Supportive care\n\nDr. Ekta A. Thakkar has extensive experience in kidney care management.\n\nTo learn more or book a consultation:\n\n[Book Appointment]\n📞 Call us at +91 98204 65733",
 
-  bloodTest: () =>
-    "🧪 Blood Testing Services at THE OZONE VETS\n\nWe offer comprehensive blood testing for accurate diagnosis and health monitoring.\n\nTests available:\n• Complete Blood Count (CBC)\n• Biochemistry Panels\n• Organ Function Tests (Liver, Kidney)\n• Thyroid Testing\n• Infection Screening\n\nResults are typically available quickly for prompt diagnosis and treatment.\n\nTo book a blood test:\n\n[Book Appointment]\n📞 Call us at +91 98204 45010",
+  dialysis: () =>
+    "🔄 Dialysis Support at Pet Clinic, Ghatkopar\n\nWe offer advanced dialysis support for pets with kidney conditions requiring specialized treatment.\n\nWhat we provide:\n• Dialysis treatment sessions\n• Kidney function support\n• Specialized monitoring\n• Follow-up care\n• Comprehensive health management\n\nTo book a dialysis appointment:\n\n[Book Appointment]\n📞 Call us at +91 98204 65733",
 
-  xray: () =>
-    "📷 Digital X-Ray Services at THE OZONE VETS\n\nWe have advanced digital X-ray facilities for rapid, high-quality diagnostic imaging.\n\nBenefits:\n• Quick results with minimal radiation exposure\n• High-resolution images for accurate diagnosis\n• Ideal for evaluating: Bones & Joints, Chest & Abdomen, Dental Issues, Foreign Objects\n\nOur digital X-ray system helps Dr. Komal diagnose conditions quickly and accurately.\n\nTo book an X-ray:\n\n[Book Appointment]\n📞 Call us at +91 98204 45010",
+  checkups: () =>
+    "🏥 Pet Health Checkups at Pet Clinic, Ghatkopar\n\nRegular checkups are important for keeping your pet healthy!\n\nA wellness examination typically includes:\n• Physical examination\n• Weight and vital signs check\n• Health assessment\n• Vaccination review\n• Wellness advice\n\nDr. Ekta A. Thakkar would be happy to see your pet for a thorough checkup.\n\nTo book a health checkup:\n\n[Book Appointment]\n📞 Call us at +91 98204 65733",
 
-  ozoneTherapy: () =>
-    "💚 Ozone Therapy at THE OZONE VETS\n\nOzone therapy is one of our specialized treatments! This advanced therapy uses medical-grade ozone to promote healing and wellness.\n\nBenefits of Ozone Therapy:\n• Improves oxygen utilization\n• Boosts the immune system\n• Anti-inflammatory effects\n• Helps treat various conditions\n• Promotes faster healing\n\nDr. Komal has extensive experience in ozone therapy and can recommend if it's suitable for your pet.\n\nTo learn more or book a consultation:\n\n[Book Appointment]\n📞 Call us at +91 98204 45010",
-
-  acupuncture: () =>
-    "📍 Veterinary Acupuncture at THE OZONE VETS\n\nWe offer veterinary acupuncture as part of our holistic care approach!\n\nBenefits of Acupuncture:\n• Pain management\n• Arthritis relief\n• Neurological condition support\n• Improved mobility\n• Overall wellness\n\nDr. Komal is trained in veterinary acupuncture and can create a customized treatment plan for your pet.\n\nTo book an acupuncture session:\n\n[Book Appointment]\n📞 Call us at +91 98204 45010",
+  treatment: () =>
+    "💊 Medical Treatment at Pet Clinic, Ghatkopar\n\nWe offer expert medical treatment for various pet health conditions and illnesses.\n\nWhat's included:\n• Accurate diagnosis\n• Customized treatment planning\n• Medication and therapy\n• Regular follow-up care\n• Health monitoring\n\nDr. Ekta A. Thakkar provides compassionate, evidence-based care.\n\nTo book a treatment consultation:\n\n[Book Appointment]\n📞 Call us at +91 98204 65733",
 
   emergency: () =>
-    "🚨 Emergency Pet Care at THE OZONE VETS\n\nIf you have a pet emergency, please call us immediately at +91 98204 45010.\n\nOur team is available to handle urgent cases during clinic hours (Mon-Sat, 10 AM - 8 PM).\n\nFor life-threatening emergencies outside our hours, please visit the nearest emergency veterinary hospital. Do not wait if your pet is in distress.\n\n⚠️ Signs of emergency:\n• Difficulty breathing\n• Severe bleeding\n• Seizures\n• Poisoning\n• Trauma or injury\n• Inability to stand\n\n📞 Call us immediately: +91 98204 45010",
+    "🚨 Emergency Guidance at Pet Clinic, Ghatkopar\n\nIf you have a pet emergency, please call us immediately at +91 98204 65733.\n\nOur team is available to provide guidance during clinic hours (Mon-Sat, 10 AM - 8 PM).\n\nFor life-threatening emergencies outside our hours, please visit the nearest emergency veterinary hospital. Do not wait if your pet is in distress.\n\n⚠️ Signs of emergency:\n• Difficulty breathing\n• Severe bleeding\n• Seizures\n• Poisoning\n• Trauma or injury\n• Inability to stand\n\n📞 Call us immediately: +91 98204 65733",
 };
 
 // ──────────────────────────────────────
@@ -321,7 +307,7 @@ function detectServiceIntent(msg: string, history?: Array<{ role: string; conten
   if (lower.includes("appointment") || lower.includes("book") || lower.includes("schedule")) return "appointment";
   if (lower.includes("hour") || lower.includes("open") || lower.includes("timing") || lower.includes("time") || lower.includes("close")) return "hours";
   if (lower.includes("address") || lower.includes("location") || lower.includes("where") || lower.includes("find") || lower.includes("directions")) return "location";
-  if (lower.includes("dr.") || lower.includes("dr ") || lower.includes("doctor") || lower.includes("vet") || lower.includes("komal")) return "doctor";
+  if (lower.includes("dr.") || lower.includes("dr ") || lower.includes("doctor") || lower.includes("vet") || lower.includes("ekta")) return "doctor";
   if (lower.includes("price") || lower.includes("cost") || lower.includes("fee") || lower.includes("charge") || lower.includes("rate")) return "pricing";
   if (lower.includes("thank") || lower.includes("thanks")) return "thanks";
   if (lower.includes("hello") || lower.includes("hi ") || lower.includes("hey") || lower.includes("good morning") || lower.includes("good evening") || lower.includes("good afternoon")) return "greeting";
@@ -403,28 +389,28 @@ function buildFallbackResponse(message: string, history: Array<{ role: string; c
   // 6. General intent handling
   switch (intent) {
     case "greeting":
-      return "👋 Welcome to THE OZONE VETS!\n\nI'm your veterinary care assistant. I can help you with:\n• Pet health concerns\n• Clinic information\n• Booking appointments with Dr. Komal\n\nHow can I help you and your pet today?";
+      return "👋 Welcome to Pet Clinic, Ghatkopar!\n\nI'm your veterinary care assistant. I can help you with:\n• Pet health concerns\n• Clinic information\n• Booking appointments with Dr. Ekta A. Thakkar\n\nHow can I help you and your pet today?";
 
     case "appointment":
       if (ctx.petType) {
-        return `I'd be happy to help schedule an appointment for your ${ctx.petType}.\n\nPlease visit our appointment page to select a convenient date and time.\n\n[Book Appointment]`;
+      return `I'd be happy to help schedule an appointment for your ${ctx.petType}.\n\nPlease visit our appointment page to select a convenient date and time.\n\n[Book Appointment]`;
       }
-      return "You can book an appointment online through our website's appointment page, or call us at +91 98204 45010.\n\nWould you like to schedule a consultation with Dr. Komal?\n\n[Book Appointment]";
+      return "You can book an appointment online through our website's appointment page, or call us at +91 98204 65733.\n\nWould you like to schedule a consultation with Dr. Ekta A. Thakkar?\n\n[Book Appointment]";
 
     case "hours":
-      return "🕐 Our Clinic Timings\n\nTHE OZONE VETS\nMonday – Saturday\n10:00 AM – 8:00 PM\n\n❌ Sunday: Closed\n\n📞 For emergencies, please call us immediately at +91 98204 45010.";
+      return "🕐 Our Clinic Timings\n\nPet Clinic, Ghatkopar\nMonday – Saturday\n10:00 AM – 8:00 PM\n\n❌ Sunday: Closed\n\n📞 For emergencies, please call us immediately at +91 98204 65733.";
 
     case "location":
-      return "📍 Our Location\n\nTHE OZONE VETS\nC3 SARANGA,\nLokhandwala Complex Market,\nBungalow, 3rd Cross Road,\nOpp. Cliff Tower, Andheri West,\nMumbai 400053\n\n📞 Phone: +91 98204 45010\n📧 Email: hello@theozonevets.com";
+      return "📍 Our Location\n\nPet Clinic, Ghatkopar\nShop No. 4 & 5, Indrayani CHS,\nGeneral Arun Kumar Vaidya Udyan,\nShri Dattaguru Mandir Marg, Opp. ARUN,\nPant Nagar, Ghatkopar East,\nMumbai, Maharashtra 400077\n\n📞 Phone: +91 98204 65733";
 
     case "doctor":
-      return "👩‍⚕️ Meet Dr. Komal\n\nDr. Komal is our lead veterinarian at THE OZONE VETS, providing advanced veterinary care with compassion and expertise.\n\nSpecializations include:\n• Ozone Therapy\n• Acupuncture\n• Holistic Pet Care\n\nWould you like to book a consultation?\n\n[Book Appointment]";
+      return "👩‍⚕️ Meet Dr. Ekta A. Thakkar\n\nDr. Ekta A. Thakkar is our lead veterinarian at Pet Clinic, Ghatkopar, providing compassionate veterinary care with expertise.\n\nSpecializations include:\n• Kidney Care\n• Dialysis Support\n• Veterinary Medicine\n\nWould you like to book a consultation?\n\n[Book Appointment]";
 
     case "pricing":
-      return "💰 Pricing\n\nFor detailed pricing information, I recommend calling us at +91 98204 45010. Prices vary depending on the service, pet size, and specific treatment required. We'd be happy to provide a personalized quote!";
+      return "💰 Pricing\n\nFor detailed pricing information, I recommend calling us at +91 98204 65733. Prices vary depending on the service, pet size, and specific treatment required. We'd be happy to provide a personalized quote!";
 
     case "service_list":
-      return "🏥 Our Services\n\nWe offer a wide range of veterinary services:\n\n• Veterinary Consultation\n• Vaccination\n• Pet Grooming\n• Blood Testing\n• Digital X-Rays\n• Ozone Therapy\n• Acupuncture\n• Pet Boarding\n• Emergency Consultation\n\nWould you like more details on any specific service?";
+      return "🏥 Our Services\n\nWe offer a wide range of veterinary services:\n\n• Veterinary Consultation\n• Vaccination & Preventive Care\n• Pet Diagnostics\n• Kidney Care\n• Dialysis Support\n• Pet Health Checkups\n• Medical Treatment\n• Emergency Guidance\n\nWould you like more details on any specific service?";
 
     case "thanks":
       return "You're welcome! 😊\n\nIf you have any more questions, feel free to ask. We're always here to help you and your pet.\n\nWishing your pet good health and happiness! 🐾❤️";
@@ -435,34 +421,34 @@ function buildFallbackResponse(message: string, history: Array<{ role: string; c
 
   // 7. Last resort - handle explicit keyword matches
   if (msg.includes("hello") || msg.includes("hi ") || msg.includes("hey") || msg.includes("good morning") || msg.includes("good evening")) {
-    return "👋 Welcome to THE OZONE VETS!\n\nI'm your veterinary care assistant. I can help you with:\n• Pet health concerns\n• Clinic information\n• Booking appointments with Dr. Komal\n\nHow can I help you and your pet today?";
+    return "👋 Welcome to Pet Clinic, Ghatkopar!\n\nI'm your veterinary care assistant. I can help you with:\n• Pet health concerns\n• Clinic information\n• Booking appointments with Dr. Ekta A. Thakkar\n\nHow can I help you and your pet today?";
   }
 
   if (msg.includes("appointment") || msg.includes("book") || msg.includes("schedule")) {
     if (ctx.petType) {
       return `I'd be happy to help schedule an appointment for your ${ctx.petType}.\n\nPlease visit our appointment page to select a convenient date and time.\n\n[Book Appointment]`;
     }
-    return "You can book an appointment online through our website's appointment page, or call us at +91 98204 45010.\n\nWould you like to schedule a consultation with Dr. Komal?\n\n[Book Appointment]";
+    return "You can book an appointment online through our website's appointment page, or call us at +91 98204 65733.\n\nWould you like to schedule a consultation with Dr. Ekta A. Thakkar?\n\n[Book Appointment]";
   }
 
   if (msg.includes("hour") || msg.includes("open") || msg.includes("timing") || msg.includes("time")) {
-    return "🕐 Our Clinic Timings\n\nTHE OZONE VETS\nMonday – Saturday\n10:00 AM – 8:00 PM\n\n❌ Sunday: Closed\n\n📞 For emergencies, please call us immediately at +91 98204 45010.";
+    return "🕐 Our Clinic Timings\n\nPet Clinic, Ghatkopar\nMonday – Saturday\n10:00 AM – 8:00 PM\n\n❌ Sunday: Closed\n\n📞 For emergencies, please call us immediately at +91 98204 65733.";
   }
 
   if (msg.includes("address") || msg.includes("location") || msg.includes("where") || msg.includes("find")) {
-    return "📍 Our Location\n\nTHE OZONE VETS\nC3 SARANGA,\nLokhandwala Complex Market,\nBungalow, 3rd Cross Road,\nOpp. Cliff Tower, Andheri West,\nMumbai 400053\n\n📞 Phone: +91 98204 45010\n📧 Email: hello@theozonevets.com";
+    return "📍 Our Location\n\nPet Clinic, Ghatkopar\nShop No. 4 & 5, Indrayani CHS,\nGeneral Arun Kumar Vaidya Udyan,\nShri Dattaguru Mandir Marg, Opp. ARUN,\nPant Nagar, Ghatkopar East,\nMumbai, Maharashtra 400077\n\n📞 Phone: +91 98204 65733";
   }
 
   if (msg.includes("dr.") || msg.includes("dr ") || msg.includes("doctor") || msg.includes("vet")) {
-    return "👩‍⚕️ Meet Dr. Komal\n\nDr. Komal is our lead veterinarian at THE OZONE VETS, providing advanced veterinary care with compassion and expertise.\n\nSpecializations include:\n• Ozone Therapy\n• Acupuncture\n• Holistic Pet Care\n\nWould you like to book a consultation?\n\n[Book Appointment]";
+    return "👩‍⚕️ Meet Dr. Ekta A. Thakkar\n\nDr. Ekta A. Thakkar is our lead veterinarian at Pet Clinic, Ghatkopar, providing compassionate veterinary care with expertise.\n\nSpecializations include:\n• Kidney Care\n• Dialysis Support\n• Veterinary Medicine\n\nWould you like to book a consultation?\n\n[Book Appointment]";
   }
 
   if (msg.includes("service") || msg.includes("treatment") || msg.includes("offer")) {
-    return "🏥 Our Services\n\nWe offer a wide range of veterinary services:\n\n• Veterinary Consultation\n• Vaccination\n• Pet Grooming\n• Blood Testing\n• Digital X-Rays\n• Ozone Therapy\n• Acupuncture\n• Pet Boarding\n• Emergency Consultation\n\nWould you like more details on any specific service?";
+    return "🏥 Our Services\n\nWe offer a wide range of veterinary services:\n\n• Veterinary Consultation\n• Vaccination & Preventive Care\n• Pet Diagnostics\n• Kidney Care\n• Dialysis Support\n• Pet Health Checkups\n• Medical Treatment\n• Emergency Guidance\n\nWould you like more details on any specific service?";
   }
 
   if (msg.includes("price") || msg.includes("cost") || msg.includes("fee") || msg.includes("charge") || msg.includes("rate")) {
-    return "💰 Pricing\n\nFor detailed pricing information, I recommend calling us at +91 98204 45010. Prices vary depending on the service, pet size, and specific treatment required. We'd be happy to provide a personalized quote!";
+    return "💰 Pricing\n\nFor detailed pricing information, I recommend calling us at +91 98204 65733. Prices vary depending on the service, pet size, and specific treatment required. We'd be happy to provide a personalized quote!";
   }
 
   if (msg.includes("thank")) {
@@ -470,10 +456,10 @@ function buildFallbackResponse(message: string, history: Array<{ role: string; c
   }
 
   if (msg.includes("cat") || msg.includes("dog") || msg.includes("puppy") || msg.includes("kitten") || msg.includes("pet")) {
-    return "🐾 Compassionate Care for All Pets\n\nWe treat both dogs and cats at THE OZONE VETS. Dr. Komal provides compassionate, expert care for all pets.\n\nDo you have a specific concern about your pet? I'd be happy to help.";
+    return "🐾 Compassionate Care for All Pets\n\nWe treat both dogs and cats at Pet Clinic, Ghatkopar. Dr. Ekta A. Thakkar provides compassionate, expert care for all pets.\n\nDo you have a specific concern about your pet? I'd be happy to help.";
   }
 
-  return "Thank you for reaching out to THE OZONE VETS! 🏥\n\nI'm your veterinary care assistant, here to help with:\n• Pet health questions\n• Clinic information\n• Appointment booking\n\nHow can I assist you and your pet today?";
+  return "Thank you for reaching out to Pet Clinic, Ghatkopar! 🏥\n\nI'm your veterinary care assistant, here to help with:\n• Pet health questions\n• Clinic information\n• Appointment booking\n\nHow can I assist you and your pet today?";
 }
 
 // ──────────────────────────────────────
@@ -493,7 +479,7 @@ Please monitor:
 • Lethargy or weakness
 • Any other unusual behavior
 
-If your ${pet} has not eaten for more than 24 hours or appears weak, we recommend a veterinary examination as soon as possible. Dr. Komal and our team at THE OZONE VETS can help assess the cause and provide appropriate treatment.
+If your ${pet} has not eaten for more than 24 hours or appears weak, we recommend a veterinary examination as soon as possible. Dr. Ekta A. Thakkar and our team at Pet Clinic, Ghatkopar can help assess the cause and provide appropriate treatment.
 
 Would you like me to help you book an appointment?
 
@@ -509,7 +495,7 @@ Vomiting can be caused by dietary indiscretion, infections, parasites, or more s
 • Is your ${pet} able to keep water down?
 • Any diarrhea or lethargy?
 
-If vomiting persists for more than 12 hours, contains blood, or your ${pet} is also lethargic, please seek veterinary care. Dr. Komal can examine your ${pet} to determine the cause.
+If vomiting persists for more than 12 hours, contains blood, or your ${pet} is also lethargic, please seek veterinary care. Dr. Ekta A. Thakkar can examine your ${pet} to determine the cause.
 
 Would you like to schedule a consultation?
 
@@ -526,7 +512,7 @@ Diarrhea can result from dietary changes, stress, infections, parasites, or othe
 • Appetite and water intake
 • Energy levels
 
-If diarrhea continues beyond 24 hours, contains blood, or your ${pet} seems unwell, we recommend a veterinary checkup. Dr. Komal can help identify the cause and recommend supportive care.
+If diarrhea continues beyond 24 hours, contains blood, or your ${pet} seems unwell, we recommend a veterinary checkup. Dr. Ekta A. Thakkar can help identify the cause and recommend supportive care.
 
 Would you like to book an appointment?
 
@@ -545,7 +531,7 @@ Please check for:
 • Dry or flaky skin
 • Any unusual odor
 
-A veterinary examination can help identify the cause and provide relief. Dr. Komal can recommend the appropriate treatment for your ${pet}'s skin condition.
+A veterinary examination can help identify the cause and provide relief. Dr. Ekta A. Thakkar can recommend the appropriate treatment for your ${pet}'s skin condition.
 
 Would you like to schedule a consultation?
 
@@ -562,7 +548,7 @@ Ear issues can be caused by infections, allergies, ear mites, or trapped debris.
 • Discharge or bad odor
 • Pain when touched
 
-Ear problems can be uncomfortable and may worsen without treatment. Dr. Komal can examine your ${pet}'s ears and recommend appropriate care.
+Ear problems can be uncomfortable and may worsen without treatment. Dr. Ekta A. Thakkar can examine your ${pet}'s ears and recommend appropriate care.
 
 Would you like to book an appointment?
 
@@ -577,7 +563,7 @@ These parasites can cause itching, skin irritation, and may transmit diseases. I
 • Use appropriate tick/flea prevention
 • Keep your home and environment clean
 
-Dr. Komal can recommend safe and effective tick and flea prevention products for your ${pet}.
+Dr. Ekta A. Thakkar can recommend safe and effective tick and flea prevention products for your ${pet}.
 
 Would you like to schedule a consultation?
 
@@ -593,7 +579,7 @@ Limping can result from injuries, arthritis, paw problems, or other orthopedic i
 • Is your ${pet} bearing any weight on it?
 • Any signs of pain when touched?
 
-If your ${pet} is not bearing weight on the leg or seems in pain, please have Dr. Komal examine them.
+If your ${pet} is not bearing weight on the leg or seems in pain, please have Dr. Ekta A. Thakkar examine them.
 
 Would you like to book an appointment?
 
@@ -626,7 +612,7 @@ Eye problems can result from infections, allergies, injuries, or more serious co
 • Squinting or keeping the eye closed
 • Cloudiness or changes in appearance
 
-Eye issues should be evaluated promptly to prevent complications. Dr. Komal can examine your ${pet}'s eyes.
+Eye issues should be evaluated promptly to prevent complications. Dr. Ekta A. Thakkar can examine your ${pet}'s eyes.
 
 Would you like to book an appointment?
 
@@ -643,7 +629,7 @@ Signs of dental problems include:
 • Difficulty eating or dropping food
 • Pawing at the mouth
 
-Untreated dental disease can lead to pain, infection, and even affect internal organs. Dr. Komal can perform a dental examination and recommend appropriate care.
+Untreated dental disease can lead to pain, infection, and even affect internal organs. Dr. Ekta A. Thakkar can perform a dental examination and recommend appropriate care.
 
 Would you like to schedule a dental checkup?
 
@@ -673,7 +659,7 @@ We offer comprehensive vaccination services for dogs and cats including:
 • Core vaccines (rabies, distemper, parvovirus, etc.)
 • Optional vaccines based on lifestyle
 
-Dr. Komal will recommend the best vaccination schedule based on your ${pet}'s age, health, and lifestyle.
+Dr. Ekta A. Thakkar will recommend the best vaccination schedule based on your ${pet}'s age, health, and lifestyle.
 
 Would you like to book a vaccination appointment?
 
@@ -690,7 +676,7 @@ A wellness examination typically includes:
 • Vaccination review
 • Parasite prevention discussion
 
-Dr. Komal would be happy to see your ${pet} for a thorough checkup.
+Dr. Ekta A. Thakkar would be happy to see your ${pet} for a thorough checkup.
 
 Would you like me to help you book an appointment?
 
@@ -706,7 +692,7 @@ A balanced diet depends on your ${pet}'s age, breed, size, and health condition.
 • Appropriate diet for puppies/kittens vs adults
 • Special dietary needs for medical conditions
 
-Dr. Komal can provide personalized dietary recommendations during a consultation.
+Dr. Ekta A. Thakkar can provide personalized dietary recommendations during a consultation.
 
 Would you like to schedule a nutrition consultation?
 
@@ -717,7 +703,7 @@ Would you like to schedule a nutrition consultation?
 
 For any health concern, it's always best to monitor your ${pet} closely and consult a veterinarian if symptoms persist or worsen.
 
-Dr. Komal at THE OZONE VETS would be happy to examine your ${pet} and provide professional guidance.
+Dr. Ekta A. Thakkar at Pet Clinic, Ghatkopar would be happy to examine your ${pet} and provide professional guidance.
 
 Would you like to book an appointment?
 

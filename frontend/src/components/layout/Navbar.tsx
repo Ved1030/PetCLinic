@@ -56,7 +56,7 @@ export default function Navbar() {
       >
         <nav
           className={cn(
-            "max-w-[1400px] mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-500 ease-out",
+            "max-w-[1440px] mx-auto flex items-center justify-between px-4 sm:px-8 lg:px-12 xl:px-16 transition-all duration-500 ease-out",
             isScrolled ? "h-[72px]" : "h-[88px]"
           )}
         >
@@ -78,10 +78,10 @@ export default function Navbar() {
             </motion.div>
             <div className="flex flex-col">
               <span className="text-[15px] font-display font-bold tracking-[-0.02em] text-[#4A3A2A] leading-none">
-                THE OZONE VETS
+                Pet Clinic, Ghatkopar
               </span>
               <span className="text-[8.5px] text-[#7B6A58] tracking-[0.2em] uppercase font-medium mt-0.5">
-                Advanced Veterinary Care
+                Dr. Ekta A. Thakkar
               </span>
             </div>
           </Link>

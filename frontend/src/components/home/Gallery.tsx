@@ -113,10 +113,10 @@ export default function Gallery() {
             Gallery
           </span>
           <h2 className="text-4xl sm:text-5xl font-display font-bold tracking-tight mb-4 text-[#4A3A2A]">
-            Our Premium Facilities
+            Our Facilities
           </h2>
           <p className="text-lg text-[#7B6A58] leading-relaxed">
-            See the premium care and luxurious facilities we provide to every pet that walks through our doors.
+            See the care and facilities we provide to every pet at Pet Clinic, Ghatkopar.
           </p>
         </motion.div>
 

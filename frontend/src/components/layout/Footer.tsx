@@ -13,11 +13,11 @@ const footerLinks = [
   {
     title: "Services",
     links: [
-      { label: "Veterinary Consultations", href: "/services" },
-      { label: "Pet Grooming", href: "/services#grooming" },
-      { label: "Pet Boarding", href: "/services#boarding" },
-      { label: "Ozone Therapy", href: "/services" },
-      { label: "Acupuncture", href: "/services" },
+      { label: "Veterinary Consultation", href: "/services" },
+      { label: "Kidney Care", href: "/services" },
+      { label: "Dialysis Support", href: "/services" },
+      { label: "Pet Diagnostics", href: "/services" },
+      { label: "Pet Health Checkups", href: "/services" },
     ],
   },
 ];
@@ -44,16 +44,16 @@ export default function Footer() {
               </motion.div>
               <div className="flex flex-col">
                 <span className="text-[17px] font-display font-bold text-white leading-none">
-                  THE OZONE VETS
+                  Pet Clinic, Ghatkopar
                 </span>
                 <span className="text-[10px] text-[#D8C9B3]/70 tracking-[0.18em] uppercase font-medium mt-0.5">
-                  Dr. Komal
+                  Dr. Ekta A. Thakkar
                 </span>
               </div>
             </Link>
             <p className="text-sm text-[#D8C9B3]/80 leading-relaxed mb-6">
-              Advanced veterinary care with compassion. Providing ozone therapy, acupuncture,
-              pet grooming, boarding, and expert consultations for your beloved pets.
+              Compassionate veterinary care for your beloved pets. Providing consultations, diagnostics,
+              kidney care, dialysis support, and expert treatment at Pet Clinic Ghatkopar.
             </p>
             <div className="flex gap-3">
               {Object.entries(SOCIAL_LINKS).map(([platform, url]) => (
@@ -139,7 +139,7 @@ export default function Footer() {
         <div className="border-t border-white/5 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-xs text-[#D8C9B3]/60">
-              &copy; {new Date().getFullYear()} THE OZONE VETS. All rights reserved.
+              &copy; {new Date().getFullYear()} Pet Clinic, Ghatkopar. All rights reserved.
             </p>
             <div className="flex gap-4 text-xs text-[#D8C9B3]/60">
               <Link href="/" className="hover:text-[#B98B5D] transition-colors">

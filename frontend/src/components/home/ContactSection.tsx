@@ -16,7 +16,6 @@ export default function ContactSection() {
     { icon: MapPin, label: "Address", value: CONTACT_INFO.address, href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACT_INFO.address)}` },
     { icon: Phone, label: "Phone", value: CONTACT_INFO.phone, href: `tel:${CONTACT_INFO.phone}` },
     { icon: Clock, label: "Hours", value: `${CONTACT_INFO.hours.weekdays} | ${CONTACT_INFO.hours.sunday}` },
-    { icon: Mail, label: "Email", value: CONTACT_INFO.email, href: `mailto:${CONTACT_INFO.email}` },
   ];
 
   return (
@@ -38,7 +37,7 @@ export default function ContactSection() {
             Visit Our Clinic
           </h2>
           <p className="text-lg text-[#7B6A58] leading-relaxed">
-            We&apos;d love to hear from you. Reach out to us or visit our premium facility in Andheri West.
+            We&apos;d love to hear from you. Reach out to us or visit our clinic in Ghatkopar East.
           </p>
         </motion.div>
 

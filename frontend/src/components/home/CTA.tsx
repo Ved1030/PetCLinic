@@ -49,11 +49,11 @@ export default function CTA() {
               <Calendar className="w-6 h-6 text-[#B98B5D]" />
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white mb-4 leading-[1.1]">
-              Give Your Pet the Premium Care They Deserve
+              Expert Veterinary Care For Your Pets
             </h2>
             <p className="text-lg mb-8 leading-relaxed" style={{ color: "rgba(216,201,179,0.7)" }}>
-              Schedule an appointment with Dr. Komal and experience compassionate,
-              expert veterinary care at our luxury facility.
+              Schedule an appointment with Dr. Ekta A. Thakkar and experience compassionate,
+              expert veterinary care for your beloved pets.
             </p>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
               <Link href="/appointment" className="w-full sm:w-auto">

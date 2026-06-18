@@ -7,14 +7,14 @@ import { Button } from "@/components/ui/button";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 const services = [
-  { icon: Stethoscope, title: "Veterinary Consultations", description: "Expert consultations and comprehensive health assessments by Dr. Komal for your beloved pets.", price: "Contact Us" },
-  { icon: Microscope, title: "Blood Testing", description: "Advanced diagnostic blood work for accurate health monitoring and early detection of conditions.", price: "Contact Us" },
-  { icon: ScanLine, title: "Digital X-Rays", description: "State-of-the-art digital radiography for precise diagnostic imaging with minimal radiation.", price: "Contact Us" },
-  { icon: Droplets, title: "Ozone Therapy", description: "Advanced ozone therapy treatments for enhanced healing, pain relief, and immune system support.", price: "Contact Us" },
-  { icon: Activity, title: "Acupuncture", description: "Traditional acupuncture treatments for pain relief, stress reduction, and holistic wellness.", price: "Contact Us" },
-  { icon: Scissors, title: "Pet Grooming", description: "Premium grooming services to keep your pet looking and feeling their absolute best.", price: "Contact Us" },
-  { icon: Home, title: "Pet Boarding", description: "Comfortable and safe boarding facilities with personalized care for your pet while you're away.", price: "Contact Us" },
-  { icon: Shield, title: "Preventive Healthcare", description: "Comprehensive wellness programs to keep your pet healthy, protected, and thriving.", price: "Contact Us" },
+  { icon: Stethoscope, title: "Veterinary Consultation", description: "Expert consultations and comprehensive health assessments by Dr. Ekta A. Thakkar for your beloved pets.", price: "Contact Us" },
+  { icon: Shield, title: "Vaccination & Preventive Care", description: "Essential vaccinations and preventive healthcare to keep your pet protected from common diseases.", price: "Contact Us" },
+  { icon: ScanLine, title: "Pet Diagnostics", description: "Advanced diagnostic services for accurate health assessment and early detection of conditions.", price: "Contact Us" },
+  { icon: Droplets, title: "Kidney Care", description: "Specialized kidney care services including diagnosis, treatment, and management of renal conditions.", price: "Contact Us" },
+  { icon: Activity, title: "Dialysis Support", description: "Advanced dialysis support for pets with kidney conditions requiring specialized treatment.", price: "Contact Us" },
+  { icon: Heart, title: "Pet Health Checkups", description: "Comprehensive health checkups to ensure your pet stays healthy and thriving.", price: "Contact Us" },
+  { icon: Stethoscope, title: "Medical Treatment", description: "Expert medical treatment for various pet health conditions and illnesses.", price: "Contact Us" },
+  { icon: Shield, title: "Emergency Guidance", description: "Professional emergency guidance and support for urgent pet health concerns.", price: "Contact Us" },
 ];
 
 export default function ServicesPage() {
@@ -79,7 +79,7 @@ export default function ServicesPage() {
               Need Help Choosing a Service?
             </h2>
             <p className="text-lg text-[#7B6A58] mb-8 max-w-2xl mx-auto">
-              Contact us for a consultation. Dr. Komal will help determine the best care plan for your pet.
+              Contact us for a consultation. Dr. Ekta A. Thakkar will help determine the best care plan for your pet.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="w-full sm:w-auto">

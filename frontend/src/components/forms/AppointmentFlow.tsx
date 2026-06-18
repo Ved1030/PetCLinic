@@ -20,13 +20,13 @@ import "react-day-picker/dist/style.css";
 
 const SERVICES = [
   { id: "consultation", label: "Veterinary Consultation", icon: Stethoscope, desc: "General health checkups, diagnosis, and treatment" },
-  { id: "vaccination", label: "Vaccination", icon: Syringe, desc: "Core and optional vaccines for dogs and cats" },
-  { id: "grooming", label: "Pet Grooming", icon: Scissors, desc: "Professional grooming, bathing, nail trimming" },
-  { id: "blood-test", label: "Blood Testing", icon: Activity, desc: "Comprehensive blood panels and organ function tests" },
-  { id: "ozone-therapy", label: "Ozone Therapy", icon: Zap, desc: "Ozone treatment for various conditions" },
-  { id: "acupuncture", label: "Acupuncture", icon: Bone, desc: "Traditional Chinese veterinary acupuncture" },
-  { id: "boarding", label: "Pet Boarding", icon: PawPrint, desc: "Safe, comfortable boarding facility" },
-  { id: "emergency", label: "Emergency Consultation", icon: Activity, desc: "Urgent care for pets" },
+  { id: "vaccination", label: "Vaccination & Preventive Care", icon: Syringe, desc: "Core and optional vaccines for dogs and cats" },
+  { id: "diagnostics", label: "Pet Diagnostics", icon: Activity, desc: "Advanced diagnostic tests and health assessment" },
+  { id: "kidney-care", label: "Kidney Care", icon: Activity, desc: "Specialized kidney care and treatment" },
+  { id: "dialysis", label: "Dialysis Support", icon: Zap, desc: "Advanced dialysis support for kidney conditions" },
+  { id: "checkups", label: "Pet Health Checkups", icon: Stethoscope, desc: "Comprehensive wellness examinations" },
+  { id: "treatment", label: "Medical Treatment", icon: PawPrint, desc: "Expert medical treatment for various conditions" },
+  { id: "emergency", label: "Emergency Guidance", icon: Activity, desc: "Urgent guidance and support for pet emergencies" },
 ];
 
 const STEP_HEADERS = [
@@ -205,7 +205,7 @@ export default function AppointmentFlow() {
   };
 
   const whatsappMessage = result
-    ? `Hello THE OZONE VETS,%0A%0AI have booked an appointment:%0A• Service: ${result.service}%0A• Date: ${result.date}%0A• Time: ${formatTimeDisplay(result.time)}%0A• Pet: ${result.petName}%0A• Owner: ${result.ownerName}%0A• Confirmation: ${result.id}%0A%0APlease confirm my appointment. Thank you!`
+    ? `Hello Pet Clinic Ghatkopar,%0A%0AI have booked an appointment:%0A• Service: ${result.service}%0A• Date: ${result.date}%0A• Time: ${formatTimeDisplay(result.time)}%0A• Pet: ${result.petName}%0A• Owner: ${result.ownerName}%0A• Confirmation: ${result.id}%0A%0APlease confirm my appointment. Thank you!`
     : "";
 
   const selectedService = SERVICES.find((s) => s.id === formData.service);
@@ -504,7 +504,7 @@ export default function AppointmentFlow() {
                   <Label className="text-[#4A3A2A] text-sm font-medium">Phone *</Label>
                   <Input
                     type="tel"
-                    placeholder="+91 98204 45010"
+                    placeholder="+91 98204 65733"
                     value={formData.phone}
                     onChange={(e) => updateForm("phone", e.target.value)}
                     className={`border-[#EFE7DD] rounded-xl ${formErrors.phone ? "border-red-500" : ""}`}
@@ -580,7 +580,7 @@ export default function AppointmentFlow() {
                   </p>
                 )}
                 <a
-                  href={`https://wa.me/919820445010?text=${whatsappMessage}`}
+                  href={`https://wa.me/919820465733?text=${whatsappMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-medium text-sm transition-all duration-200 hover:shadow-lg hover:scale-105"

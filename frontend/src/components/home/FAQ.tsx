@@ -9,14 +9,14 @@ import { cn } from "@/lib/utils";
 
 const faqs = [
   {
-    question: "What services does THE OZONE VETS offer?",
+    question: "What services does Pet Clinic Ghatkopar offer?",
     answer:
-      "We offer veterinary consultations, blood testing, digital X-rays, ozone therapy, acupuncture, pet grooming, pet boarding, and comprehensive preventive healthcare services.",
+      "We offer veterinary consultation, vaccination, pet diagnostics, kidney care, dialysis support, pet health checkups, medical treatment, and emergency guidance services.",
   },
   {
-    question: "Who is Dr. Komal?",
+    question: "Who is Dr. Ekta A. Thakkar?",
     answer:
-      "Dr. Komal is an experienced veterinary physician dedicated to providing compassionate and advanced care for pets. She specializes in ozone therapy, acupuncture, preventive healthcare, and comprehensive veterinary medicine.",
+      "Dr. Ekta A. Thakkar is an experienced veterinary physician dedicated to providing compassionate, evidence-based care and advanced treatment solutions for pets at Pet Clinic Ghatkopar.",
   },
   {
     question: "What are the clinic hours?",
@@ -24,19 +24,19 @@ const faqs = [
       "We are open Monday to Saturday from 10:00 AM to 8:00 PM. The clinic is closed on Sundays.",
   },
   {
-    question: "Do you offer ozone therapy for pets?",
+    question: "Do you offer kidney care and dialysis support?",
     answer:
-      "Yes, we specialize in ozone therapy treatments for pets. This advanced therapy helps with various conditions including skin issues, wound healing, and immune system support.",
+      "Yes, we specialize in kidney care and dialysis support for pets. These services help manage kidney conditions and provide advanced treatment options for pets with renal issues.",
   },
   {
     question: "Where is the clinic located?",
     answer:
-      "We are located at C3 SARANGA, Lokhandwala Complex Market, Bungalow, 3rd Cross Road, Opp. Cliff Tower, Andheri West, Mumbai 400053.",
+      "We are located at Shop No. 4 & 5, Indrayani CHS, General Arun Kumar Vaidya Udyan, Shri Dattaguru Mandir Marg, Opp. ARUN, Pant Nagar, Ghatkopar East, Mumbai, Maharashtra 400077.",
   },
   {
-    question: "Do you offer pet boarding services?",
+    question: "Do you offer emergency guidance?",
     answer:
-      "Yes, we provide premium pet boarding facilities with personalized care, comfortable accommodations, and regular health monitoring for your beloved pets.",
+      "Yes, we provide professional emergency guidance and support for urgent pet health concerns. For emergencies, please call us at +91 98204 65733.",
   },
 ];
 

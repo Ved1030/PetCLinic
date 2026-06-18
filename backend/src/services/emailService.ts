@@ -82,7 +82,7 @@ async function sendEmail(options: EmailOptions): Promise<void> {
     logger.info(`EMAIL SENDING STARTED: to=${options.to}, subject="${options.subject}"`);
 
     const info = await t.sendMail({
-      from: `"THE OZONE VETS" <${config.emailFrom}>`,
+      from: `"Pet Clinic, Ghatkopar" <${config.emailFrom}>`,
       to: options.to,
       subject: options.subject,
       html: options.html,
@@ -119,12 +119,12 @@ function formatTime(time: string): string {
 
 export const emailService = {
   async sendConfirmation(appointment: Appointment): Promise<void> {
-    const subject = "Appointment Confirmation - THE OZONE VETS";
+    const subject = "Appointment Confirmation - Pet Clinic, Ghatkopar";
     const html = `
       <div style="font-family: 'Georgia', serif; max-width: 600px; margin: 0 auto; padding: 30px; background: #FAF7F2; border-radius: 16px;">
         <div style="text-align: center; margin-bottom: 30px;">
-          <h1 style="color: #4A3A2A; font-size: 28px; margin: 0;">THE OZONE VETS</h1>
-          <p style="color: #B98B5D; font-size: 14px; margin: 5px 0 0;">Advanced Veterinary Care With Compassion</p>
+          <h1 style="color: #4A3A2A; font-size: 28px; margin: 0;">Pet Clinic, Ghatkopar</h1>
+          <p style="color: #B98B5D; font-size: 14px; margin: 5px 0 0;">Compassionate Veterinary Care For Your Beloved Pets</p>
         </div>
 
         <div style="background: white; border-radius: 12px; padding: 25px; border: 1px solid #EFE7DD;">
@@ -161,17 +161,18 @@ export const emailService = {
         <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 12px; border: 1px solid #EFE7DD;">
           <h3 style="color: #4A3A2A; font-size: 16px; margin: 0 0 10px;">📍 Clinic Information</h3>
           <p style="color: #7B6A58; font-size: 13px; line-height: 1.6; margin: 0;">
-            C3 SARANGA, Lokhandwala Complex Market<br>
-            Bungalow, 3rd Cross Road, Opp. Cliff Tower<br>
-            Andheri West, Mumbai 400053<br>
-            Phone: +91 98204 45010
+            Shop No. 4 &amp; 5, Indrayani CHS<br>
+            General Arun Kumar Vaidya Udyan<br>
+            Shri Dattaguru Mandir Marg, Opp. ARUN<br>
+            Pant Nagar, Ghatkopar East, Mumbai 400077<br>
+            Phone: +91 98204 65733
           </p>
         </div>
 
         <div style="margin-top: 20px; text-align: center;">
           <p style="color: #7B6A58; font-size: 12px; line-height: 1.5;">
             Please arrive 10 minutes before your appointment.<br>
-            To reschedule or cancel, please call us at +91 98204 45010.
+            To reschedule or cancel, please call us at +91 98204 65733.
           </p>
         </div>
       </div>
@@ -202,19 +203,19 @@ export const emailService = {
   },
 
   async sendContactConfirmation(inquiry: ContactMessage): Promise<void> {
-    const subject = "Thank You for Contacting THE OZONE VETS";
+    const subject = "Thank You for Contacting Pet Clinic, Ghatkopar";
     const html = `
       <div style="font-family: 'Georgia', serif; max-width: 600px; margin: 0 auto; padding: 30px; background: #FAF7F2; border-radius: 16px;">
         <div style="text-align: center; margin-bottom: 30px;">
-          <h1 style="color: #4A3A2A; font-size: 28px; margin: 0;">THE OZONE VETS</h1>
-          <p style="color: #B98B5D; font-size: 14px; margin: 5px 0 0;">Advanced Veterinary Care With Compassion</p>
+          <h1 style="color: #4A3A2A; font-size: 28px; margin: 0;">Pet Clinic, Ghatkopar</h1>
+          <p style="color: #B98B5D; font-size: 14px; margin: 5px 0 0;">Compassionate Veterinary Care For Your Beloved Pets</p>
         </div>
 
         <div style="background: white; border-radius: 12px; padding: 25px; border: 1px solid #EFE7DD;">
           <h2 style="color: #4A3A2A; font-size: 20px; margin: 0 0 10px;">Thank You for Reaching Out 🙏</h2>
           <p style="color: #7B6A58; font-size: 14px; line-height: 1.6; margin: 0 0 20px;">
             Dear ${inquiry.name},<br><br>
-            Thank you for contacting THE OZONE VETS. Our veterinary team has received your inquiry and will get back to you shortly.
+            Thank you for contacting Pet Clinic, Ghatkopar. Our veterinary team has received your inquiry and will get back to you shortly.
           </p>
 
           <table style="width: 100%; border-collapse: collapse;">
@@ -231,12 +232,13 @@ export const emailService = {
         </div>
 
         <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 12px; border: 1px solid #EFE7DD;">
-          <h3 style="color: #4A3A2A; font-size: 16px; margin: 0 0 10px;">📍 THE OZONE VETS</h3>
+          <h3 style="color: #4A3A2A; font-size: 16px; margin: 0 0 10px;">📍 Pet Clinic, Ghatkopar</h3>
           <p style="color: #7B6A58; font-size: 13px; line-height: 1.6; margin: 0;">
-            C3 SARANGA, Lokhandwala Complex Market<br>
-            Bungalow, 3rd Cross Road, Opp. Cliff Tower<br>
-            Andheri West, Mumbai 400053<br>
-            Phone: +91 98204 45010
+            Shop No. 4 &amp; 5, Indrayani CHS<br>
+            General Arun Kumar Vaidya Udyan<br>
+            Shri Dattaguru Mandir Marg, Opp. ARUN<br>
+            Pant Nagar, Ghatkopar East, Mumbai 400077<br>
+            Phone: +91 98204 65733
           </p>
         </div>
       </div>

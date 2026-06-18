@@ -41,7 +41,7 @@ export default function GalleryPage() {
               </span>
             </h1>
             <p className="text-lg text-[#7B6A58] max-w-2xl mx-auto leading-relaxed">
-              A glimpse into the premium care and luxurious facilities we provide to every pet at THE OZONE VETS.
+              A glimpse into the care and facilities we provide to every pet at Pet Clinic, Ghatkopar.
             </p>
           </motion.div>
         </div>

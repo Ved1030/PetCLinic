@@ -73,18 +73,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "VeterinaryCare",
-              name: "THE OZONE VETS",
-              description: "Advanced veterinary care with compassion. Veterinary consultations, ozone therapy, acupuncture, pet grooming, and boarding in Mumbai.",
-              url: "https://theozonevets.com",
-              telephone: "+919820445010",
-              email: "hello@theozonevets.com",
-              image: "https://theozonevets.com/images/logo.png",
+              name: "Pet Clinic, Ghatkopar",
+              description: "Compassionate veterinary care for your beloved pets. Veterinary consultations, diagnostics, kidney care, dialysis support, and treatment in Mumbai.",
+              url: "https://petclinicghatkopar.com",
+              telephone: "+919820465733",
+              email: "info@petclinicghatkopar.com",
+              image: "https://petclinicghatkopar.com/images/logo.png",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "C3 SARANGA, Lokhandwala Complex Market, Bungalow, 3rd Cross Road, Opp. Cliff Tower",
-                addressLocality: "Andheri West",
+                streetAddress: "Shop No. 4 & 5, Indrayani CHS, General Arun Kumar Vaidya Udyan, Shri Dattaguru Mandir Marg, Opp. ARUN",
+                addressLocality: "Pant Nagar, Ghatkopar East",
                 addressRegion: "Mumbai",
-                postalCode: "400053",
+                postalCode: "400077",
                 addressCountry: "IN",
               },
               openingHoursSpecification: [
@@ -98,8 +98,8 @@ export default function RootLayout({
               priceRange: "₹₹",
               aggregateRating: {
                 "@type": "AggregateRating",
-                ratingValue: "4.5",
-                reviewCount: "178",
+                ratingValue: "4.1",
+                reviewCount: "142",
               },
             }),
           }}
