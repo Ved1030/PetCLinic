@@ -7,7 +7,6 @@ function validateEnv(): void {
 
   if (process.env.NODE_ENV === "production") {
     requiredVars.push(
-      "SARVAM_API_KEY",
       "EMAIL_HOST",
       "EMAIL_USER",
       "EMAIL_PASS"
@@ -20,6 +19,23 @@ function validateEnv(): void {
       `[CONFIG] Missing required environment variables in production: ${missing.join(", ")}`
     );
   }
+
+  // Log Sarvam key presence (don't require it — mock mode kicks in)
+  if (process.env.SARVAM_API_KEY) {
+    console.log("[CONFIG] SARVAM_API_KEY is set — AI mode enabled");
+  } else {
+    console.warn("[CONFIG] SARVAM_API_KEY is NOT set — chatbot will use local fallback responses");
+  }
+
+  if (process.env.SARVAM_API_URL) {
+    console.log(`[CONFIG] SARVAM_API_URL = ${process.env.SARVAM_API_URL}`);
+  } else {
+    console.log("[CONFIG] SARVAM_API_URL not set — will use default https://api.sarvam.ai/v1/chat");
+  }
+
+  // Log frontend URL
+  console.log(`[CONFIG] FRONTEND_URL = ${process.env.FRONTEND_URL || "not set"}`);
+  console.log(`[CONFIG] NODE_ENV = ${process.env.NODE_ENV || "not set"}`);
 }
 
 validateEnv();

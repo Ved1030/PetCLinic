@@ -3,6 +3,18 @@ import { config } from "../config";
 import { logger } from "../utils/logger";
 
 // ──────────────────────────────────────
+// Mock mode flag — set true to skip Sarvam
+// ──────────────────────────────────────
+let USE_MOCK_MODE = false;
+
+// ──────────────────────────────────────
+// Sarvam call timeout (8s — must be less
+// than frontend 30s timeout)
+// ──────────────────────────────────────
+const SARVAM_TIMEOUT = 8000;
+const SARVAM_RACE_TIMEOUT = 10000;
+
+// ──────────────────────────────────────
 // System prompt for the AI (LLM) path
 // ──────────────────────────────────────
 
@@ -716,36 +728,65 @@ Would you like to book an appointment?
 
 export const chatService = {
   async sendMessage(message: string, history: Array<{ role: string; content: string }> = []): Promise<string> {
+    console.log("[chatService] sendMessage called", { messageLength: message.length, historyLength: history.length, mockMode: USE_MOCK_MODE, hasApiKey: !!config.sarvamApiKey });
+
     const messages = [
       { role: "system", content: CLINIC_CONTEXT },
       ...history.map((m) => ({ role: m.role, content: m.content })),
       { role: "user", content: message },
     ];
 
-    if (config.sarvamApiKey) {
-      try {
-        const response = await axios.post<ChatResponse>(
-          config.sarvamApiUrl,
-          {
-            model: "sarvam-1",
-            messages,
-            temperature: 0.8,
-            max_tokens: 800,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "api-key": config.sarvamApiKey,
-            },
-            timeout: 30000,
-          }
-        );
-        return response.data.choices[0]?.message?.content || "I'm sorry, I couldn't generate a response. Please try again.";
-      } catch (error) {
-        logger.error("Sarvam AI API error:", error);
-      }
+    // ── Mock mode: skip Sarvam entirely ──
+    if (USE_MOCK_MODE || !config.sarvamApiKey) {
+      console.log("[chatService] Using fallback (mock mode or no API key)");
+      return buildFallbackResponse(message, history);
     }
 
-    return buildFallbackResponse(message, history);
+    // ── Try Sarvam with short timeout ──
+    try {
+      console.log("[chatService] Calling Sarvam API:", config.sarvamApiUrl);
+
+      const sarvamPromise = axios.post<ChatResponse>(
+        config.sarvamApiUrl,
+        {
+          model: "sarvam-1",
+          messages,
+          temperature: 0.8,
+          max_tokens: 800,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "api-key": config.sarvamApiKey,
+          },
+          timeout: SARVAM_TIMEOUT,
+        }
+      );
+
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error(`Sarvam timeout after ${SARVAM_RACE_TIMEOUT}ms`)), SARVAM_RACE_TIMEOUT)
+      );
+
+      const response = await Promise.race([sarvamPromise, timeoutPromise]);
+
+      console.log("[chatService] Sarvam response received successfully");
+      const reply = response.data.choices[0]?.message?.content;
+      if (reply) {
+        return reply;
+      }
+      console.warn("[chatService] Sarvam returned empty content, using fallback");
+      return buildFallbackResponse(message, history);
+    } catch (error: unknown) {
+      const errMsg = error instanceof Error ? error.message : String(error);
+      console.error("[chatService] Sarvam API error:", errMsg);
+
+      // If it was a timeout, switch to mock mode for subsequent calls
+      if (errMsg.includes("timeout") || errMsg.includes("connect") || errMsg.includes("ENOTFOUND") || errMsg.includes("ECONNREFUSED") || errMsg.includes("ETIMEDOUT")) {
+        console.warn("[chatService] Sarvam unreachable — switching to mock mode");
+        USE_MOCK_MODE = true;
+      }
+
+      return buildFallbackResponse(message, history);
+    }
   },
 };

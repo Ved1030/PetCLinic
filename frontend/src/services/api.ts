@@ -97,11 +97,11 @@ export const sendChatMessage = async (
       message,
       history: history.map((m) => ({ role: m.role, content: m.content })),
     });
-    return data?.data?.message ?? "I'm sorry, I couldn't process that request. Please try again.";
+    return data?.data?.message ?? "Please call +91 98204 65733 for immediate assistance.";
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : String(error);
     console.error("[ChatAPI] sendChatMessage failed:", errMsg);
-    if (errMsg.includes("Network error") || errMsg.includes("connect")) {
+    if (errMsg.includes("Network error") || errMsg.includes("connect") || errMsg.includes("timeout") || errMsg.includes("ECONN")) {
       return "I'm having trouble connecting right now. Please try again or call us at +91 98204 65733.";
     }
     return "I'm sorry, something went wrong. Please try again or call us at +91 98204 65733.";

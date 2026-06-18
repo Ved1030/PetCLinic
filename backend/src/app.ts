@@ -56,9 +56,9 @@ const limiter = rateLimit({
 });
 app.use(config.apiPrefix, limiter);
 
-// Body parsing with size limits
-app.use(express.json({ limit: "10kb" }));
-app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+// Body parsing with size limits (increased for chat history payloads)
+app.use(express.json({ limit: "100kb" }));
+app.use(express.urlencoded({ extended: true, limit: "100kb" }));
 
 // Logging
 app.use(morgan(config.isDev ? "dev" : "combined"));
@@ -90,6 +90,18 @@ app.get(`${config.apiPrefix}/health`, (_req, res) => {
     environment: config.nodeEnv,
     timestamp: new Date().toISOString(),
   });
+});
+
+// ── CORS diagnostic middleware for chat routes ──
+app.use(`${config.apiPrefix}/chat`, (req, _res, next) => {
+  console.log("[CORS-DEBUG] Request to /api/chat:", {
+    method: req.method,
+    origin: req.headers.origin,
+    referer: req.headers.referer,
+    'content-type': req.headers['content-type'],
+    path: req.path,
+  });
+  next();
 });
 
 // Routes
